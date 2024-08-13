@@ -4,34 +4,36 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("wording")
-@RequiredArgsConstructor
 public class WordingController {
 
     private final VectorStore vectorStore;
+    private final double threshold;
 
-    @PostMapping
-    public List<Document> search(@RequestBody String text){
-        List<Document> documents = List.of(
-                new Document("Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!!", Map.of("meta1", "meta1")));
+    public WordingController(VectorStore vectorStore,
+                             @Value("${ai.vector.similarity.search.threshold}") double threshold) {
+        this.vectorStore = vectorStore;
+        this.threshold = threshold;
+    }
 
-//                new Document("The World is Big and Salvation Lurks Around the Corner"),
-//                new Document("You walk forward facing the past and you turn back toward the future.", Map.of("meta2", "meta2")));
 
+    @PostMapping("document")
+    public void addDocument(@RequestBody List<Document> documents) {
         // Add the documents to PGVector
-//        vectorStore.add(documents);
+        vectorStore.add(documents);
+    }
+
+    @GetMapping("query")
+    public List<Document> search(@RequestParam String text){
 
         // Retrieve documents similar to a query
-        return vectorStore.similaritySearch(SearchRequest.query(text).withTopK(5));
+        return vectorStore.similaritySearch(SearchRequest.query(text).withSimilarityThreshold(threshold).withTopK(5));
     }
 
 

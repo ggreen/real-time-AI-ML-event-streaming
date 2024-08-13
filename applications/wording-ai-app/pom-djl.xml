@@ -31,7 +31,6 @@
 		<spring-ai.version>1.0.0-M1</spring-ai.version>
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
 		<dl4j-root.version>1.0.0-M2.1</dl4j-root.version>
-		<dl4j-master.version>1.0.0-M2.1</dl4j-master.version>
 		<jcommon.version>1.0.23</jcommon.version>
 		<jfreechart.version>1.0.13</jfreechart.version>
 		<nd4j.backend>nd4j-native</nd4j.backend>
@@ -107,61 +106,20 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- ========================= -->
-
 		<dependency>
-			<groupId>org.nd4j</groupId>
-			<artifactId>${nd4j.backend}</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.datavec</groupId>
-			<artifactId>datavec-api</artifactId>
-			<version>${dl4j-master.version}</version>
+			<groupId>ai.djl</groupId>
+			<artifactId>api</artifactId>
+			<version>0.23.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.datavec</groupId>
-			<artifactId>datavec-data-image</artifactId>
-			<version>${dl4j-master.version}</version>
+			<groupId>ai.djl.tensorflow</groupId>
+			<artifactId>tensorflow-engine</artifactId>
+			<version>0.23.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.datavec</groupId>
-			<artifactId>datavec-local</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-datasets</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-core</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>resources</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-ui</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-zoo</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<!-- ParallelWrapper & ParallelInference live here -->
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-parallel-wrapper</artifactId>
-			<version>${dl4j-master.version}</version>
+			<groupId>ai.djl.tensorflow</groupId>
+			<artifactId>tensorflow-model-zoo</artifactId>
+			<version>0.23.0</version>
 		</dependency>
 
 		<!-- ============================ -->
@@ -169,7 +127,7 @@
 		<dependency>
 			<groupId>com.github.nyla-solutions</groupId>
 			<artifactId>nyla.solutions.core</artifactId>
-			<version>2.2.2-SNAPSHOT</version>
+			<version>2.2.1</version>
 		</dependency>
 
 		<dependency>

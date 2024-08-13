@@ -1,6 +1,5 @@
 package realtime.ai.ml.event.streaming.wording.nlp;
 
-import nyla.solutions.core.patterns.creational.Creator;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,17 +27,17 @@ class Word2VectorTest {
     @Mock
     private WordVectors wordVectors;
 
-    @Mock
-    private Creator<WordVectors> creator;
+
     @Mock
     private INDArray tensor;
 
     @Mock
     private EmbeddingRequest request;
+    private int length = 5;
 
     @BeforeEach
     void setUp() {
-        subject = new Word2Vector(creator);
+        subject = new Word2Vector(wordVectors,length);
     }
 
     @Test
@@ -46,7 +45,6 @@ class Word2VectorTest {
 
         double[] expected = {0.34};
 
-        when(creator.create()).thenReturn(wordVectors);
         when(wordVectors.getWordVectorsMean(any())).thenReturn(tensor);
         when(tensor.toDoubleVector()).thenReturn(expected);
 
@@ -59,18 +57,20 @@ class Word2VectorTest {
     @Test
     void call() {
 
-        double[] expected = {0.34};
+        double[] vectors = {0.34};
 
         List<String> instructors = Arrays.asList("Testing");
         when(request.getInstructions()).thenReturn(instructors);
-        when(creator.create()).thenReturn(wordVectors);
         when(wordVectors.getWordVectorsMean(any())).thenReturn(tensor);
-        when(tensor.toDoubleVector()).thenReturn(expected);
+        when(tensor.toDoubleVector()).thenReturn(vectors);
 
 
         var actual = subject.call(request);
 
         assertThat( actual).isNotNull();
-        assertThat(actual.getResults()).isNotEmpty();
+        var results = actual.getResults();
+
+        assertThat(results).isNotEmpty();
+        assertThat(results.get(0).getOutput().size()).isEqualTo(length);
     }
 }

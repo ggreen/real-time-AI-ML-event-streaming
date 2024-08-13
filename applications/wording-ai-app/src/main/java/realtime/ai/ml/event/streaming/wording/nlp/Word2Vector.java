@@ -1,28 +1,35 @@
 package realtime.ai.ml.event.streaming.wording.nlp;
 
-import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import nyla.solutions.core.patterns.creational.Creator;
+import nyla.solutions.core.util.collections.DimensionBuilder;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.Embedding;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.embedding.EmbeddingRequest;
 import org.springframework.ai.embedding.EmbeddingResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 
 @Slf4j
-@RequiredArgsConstructor
 @Component
 public class Word2Vector implements EmbeddingModel {
 
-    private final Creator<WordVectors> wordVectorsCreator;
+
+    private final  WordVectors word2Vec;
+    private final int dimensionLength;
+
+    public Word2Vector(WordVectors word2Vec,
+                       @Value("${spring.ai.vectorstore.pgvector.dimensions}")
+                       int dimensionLength) {
+        this.word2Vec = word2Vec;
+        this.dimensionLength = dimensionLength;
+    }
 
     @Override
     public EmbeddingResponse call(EmbeddingRequest request) {
@@ -38,16 +45,22 @@ public class Word2Vector implements EmbeddingModel {
         return new EmbeddingResponse(embeddings);
     }
 
+    @SneakyThrows
     @Override
     public List<Double> embed(Document document) {
-        var word2Vec = wordVectorsCreator.create();
 
         // Convert a string to a vector
         var vector = word2Vec.getWordVectorsMean(Arrays.asList(document.getContent().split(" ")));
-//        var vector = word2Vec.getWordVectorMatrixNormalized(document.getContent());
 
+        System.out.println(vector);
 
-        log.info("Vectors: {}",vector);
-        return DoubleStream.of(vector.toDoubleVector()).boxed().collect(Collectors.toList());
+        var vectors = vector.toDoubleVector();
+
+        return DimensionBuilder.builder(vectors)
+                .fillValue(0.0)
+                .length(dimensionLength)
+                .build();
     }
+
+
 }
