@@ -19,10 +19,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class Word2VectorTest {
+class Word2VectorModelTest {
 
     private String text = "Hello world";
-    private Word2Vector subject;
+    private Word2VectorModel subject;
 
     @Mock
     private WordVectors wordVectors;
@@ -37,7 +37,7 @@ class Word2VectorTest {
 
     @BeforeEach
     void setUp() {
-        subject = new Word2Vector(wordVectors,length);
+        subject = new Word2VectorModel(wordVectors,length);
     }
 
     @Test

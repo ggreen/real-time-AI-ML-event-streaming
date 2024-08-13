@@ -18,14 +18,14 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class Word2Vector implements EmbeddingModel {
+public class Word2VectorModel implements EmbeddingModel {
 
 
     private final  WordVectors word2Vec;
     private final int dimensionLength;
 
-    public Word2Vector(WordVectors word2Vec,
-                       @Value("${spring.ai.vectorstore.pgvector.dimensions}")
+    public Word2VectorModel(WordVectors word2Vec,
+                            @Value("${spring.ai.vectorstore.pgvector.dimensions}")
                        int dimensionLength) {
         this.word2Vec = word2Vec;
         this.dimensionLength = dimensionLength;

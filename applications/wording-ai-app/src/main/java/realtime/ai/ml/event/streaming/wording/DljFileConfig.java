@@ -5,11 +5,13 @@ import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.io.File;
 
 @Configuration
-public class AiConfig {
+@Profile("dl4j-file")
+public class DljFileConfig {
 
     @Value("${ai.model.word.vector.path}")
     private String wordVectorsPath;
@@ -19,6 +21,7 @@ public class AiConfig {
     @Bean
     WordVectors wordVectorsCreator()
     {
+
         return WordVectorSerializer.loadStaticModel(new File(wordVectorsPath));
     }
 }
