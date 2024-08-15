@@ -12,7 +12,8 @@
 
     <modules>
         <module>components/domains</module>
-        <module>applications/wording-ai-app</module>
+        <module>applications/dl4j-ai-service</module>
+        <module>applications/web-ai-app</module>
     </modules>
     <build>
         <pluginManagement>
