@@ -106,64 +106,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- ========================= -->
-
-		<dependency>
-			<groupId>org.nd4j</groupId>
-			<artifactId>${nd4j.backend}</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.datavec</groupId>
-			<artifactId>datavec-api</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.datavec</groupId>
-			<artifactId>datavec-data-image</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.datavec</groupId>
-			<artifactId>datavec-local</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-datasets</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-core</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>resources</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-ui</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-zoo</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-		<!-- ParallelWrapper & ParallelInference live here -->
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-parallel-wrapper</artifactId>
-			<version>${dl4j-master.version}</version>
-		</dependency>
-
 		<!-- ============================ -->
 		<!-- https://mvnrepository.com/artifact/com.github.nyla-solutions/nyla.solutions.core -->
 		<dependency>
