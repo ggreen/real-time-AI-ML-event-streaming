@@ -1,4 +1,4 @@
-package realtime.ai.ml.event.streaming.web;
+package realtime.ai.ml.event.streaming.sink;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package realtime.ai.ml.event.streaming.web;
+package realtime.ai.ml.event.streaming.sink;
 
 import nyla.solutions.core.util.collections.DimensionBuilder;
 import org.springframework.beans.factory.annotation.Value;

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>realtime.ai.ml.event.streaming</groupId>
-	<artifactId>wording-ai-app</artifactId>
+	<artifactId>consumer-ai-sink</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>wording-ai-app</name>
-	<description>wording-ai-app</description>
+	<name>consumer-ai-sink</name>
+	<description>consumer-ai-sink</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -38,6 +38,16 @@
 		<javacv.version>1.5.5</javacv.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>realtime.ai.ml.event.streaming</groupId>
+			<artifactId>domains</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>realtime.ai.ml.event.streaming</groupId>
+			<artifactId>ai-ml-services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
@@ -182,11 +192,6 @@
 			<artifactId>spring-cloud-stream-test-binder</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>realtime.ai.ml.event.streaming</groupId>
-            <artifactId>domains</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 	<dependencyManagement>
 		<dependencies>

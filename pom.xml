@@ -12,6 +12,8 @@
 
     <modules>
         <module>components/domains</module>
+        <module>components/ai-ml-services</module>
+        <module>applications/consumer-ai-sink</module>
         <module>applications/dl4j-ai-service</module>
         <module>applications/web-ai-app</module>
     </modules>

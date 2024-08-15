@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>realtime.ai.ml.event.streaming</groupId>
-	<artifactId>web-ai-app</artifactId>
+	<artifactId>ai-ml-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>web-ai-app</name>
-	<description>web-ai-app</description>
+	<name>ai-ml-services</name>
+	<description>ai-ml-services</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -38,16 +38,6 @@
 		<javacv.version>1.5.5</javacv.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>realtime.ai.ml.event.streaming</groupId>
-			<artifactId>domains</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>realtime.ai.ml.event.streaming</groupId>
-			<artifactId>ai-ml-services</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
@@ -134,9 +124,12 @@
 			<artifactId>spring-cloud-stream-test-binder</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-
-	</dependencies>
+        <dependency>
+            <groupId>realtime.ai.ml.event.streaming</groupId>
+            <artifactId>domains</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -158,18 +151,18 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--				<configuration>-->
+<!--					<excludes>-->
+<!--						<exclude>-->
+<!--							<groupId>org.projectlombok</groupId>-->
+<!--							<artifactId>lombok</artifactId>-->
+<!--						</exclude>-->
+<!--					</excludes>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 	<repositories>
