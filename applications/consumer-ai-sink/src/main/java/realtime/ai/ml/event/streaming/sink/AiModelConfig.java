@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import realtime.ai.ml.event.streaming.services.Text2VectorsModel;
 import realtime.ai.ml.event.streaming.services.conversions.DocumentToLetter;
+import realtime.ai.ml.event.streaming.services.conversions.LetterToDocument;
 import realtime.ai.ml.event.streaming.services.nlp.vectors.vectors.Text2Vectors;
+import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
 
 @Configuration
@@ -20,8 +22,8 @@ public class AiModelConfig {
     }
 
     @Bean
-    Converter<Document, LetterResults> converter()
+    Converter<Letter, Document> converter()
     {
-        return new DocumentToLetter();
+        return new LetterToDocument();
     }
 }

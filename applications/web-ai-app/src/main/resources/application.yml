@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: "web-ai-app"
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
