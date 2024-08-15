@@ -11,6 +11,7 @@
     <name>tanzu-rabbitmq-event-streaming-showcase-parent</name>
 
     <modules>
+        <module>components/domains</module>
         <module>applications/wording-ai-app</module>
     </modules>
     <build>
