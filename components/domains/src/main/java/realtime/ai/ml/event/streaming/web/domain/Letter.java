@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Letter {
-    private String from;
-    private String to;
+    private String author;
+    private String receiver;
     private String subject;
     private String body;
 }

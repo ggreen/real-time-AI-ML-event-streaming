@@ -2,7 +2,6 @@ package realtime.ai.ml.event.streaming.services.conversions;
 
 import nyla.solutions.core.patterns.conversion.Converter;
 import org.springframework.ai.document.Document;
-import org.springframework.stereotype.Component;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
 
@@ -27,8 +26,8 @@ public class DocumentToLetter implements Converter<Document, LetterResults> {
             if(distanceValue != null)
                 letterResultsBuilder.distance(Double.valueOf(valueOf(distanceValue)));
 
-            letterBuilder.from(valueOf(metaData.get("from")))
-                    .to(valueOf(metaData.get("to")))
+            letterBuilder.author(valueOf(metaData.get("from")))
+                    .receiver(valueOf(metaData.get("to")))
                     .body(valueOf(metaData.get("body")));
         }
 

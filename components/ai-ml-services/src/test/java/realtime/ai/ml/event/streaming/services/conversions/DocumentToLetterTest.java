@@ -34,8 +34,8 @@ class DocumentToLetterTest {
         Map<String, Object> metaData  = Map.of(
                 "body",expected.getLetter().getBody(),
                 "distance",expected.getDistance(),
-                "to",expected.getLetter().getTo(),
-                "from",expected.getLetter().getFrom());
+                "to",expected.getLetter().getReceiver(),
+                "from",expected.getLetter().getAuthor());
 
         when(document.getContent()).thenReturn(expected.getLetter().getSubject());
         when(document.getMetadata()).thenReturn(metaData);

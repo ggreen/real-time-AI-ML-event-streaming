@@ -5,11 +5,10 @@ import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
+import realtime.ai.ml.event.streaming.web.repository.LetterRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,14 +19,17 @@ public class LetterQueryController {
 
     private final VectorStore vectorStore;
     private final double threshold;
-    private final Converter<Document, LetterResults> toLetter;
+    private final LetterRepository letterRepository;
+    private final Converter<Document, LetterResults> toLetterResults;
 
     public LetterQueryController(VectorStore vectorStore,
-                                 Converter<Document, LetterResults> toLetter,
+                                 Converter<Document, LetterResults> toLetterResults,
+                                 LetterRepository letterRepository,
                                  @Value("${ai.vector.similarity.search.threshold}")
                                  double threshold) {
         this.vectorStore = vectorStore;
-        this.toLetter = toLetter;
+        this.toLetterResults = toLetterResults;
+        this.letterRepository = letterRepository;
         this.threshold = threshold;
     }
 
@@ -38,6 +40,12 @@ public class LetterQueryController {
                 .withSimilarityThreshold(threshold)
                 .withTopK(5));
 
-        return documents.stream().map((doc) -> toLetter.convert(doc)).collect(Collectors.toList());
+        return documents.stream().map((doc) -> toLetterResults.convert(doc)).collect(Collectors.toList());
+    }
+
+    @GetMapping("{to}")
+    public List<Letter> searchByTo(@PathVariable String to) {
+
+        return this.letterRepository.findByLetterTo(to);
     }
 }

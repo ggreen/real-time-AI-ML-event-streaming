@@ -25,8 +25,8 @@ class LetterToDocumentTest {
     void convert() {
 
         Map<String, Object> metadata = Map.of(
-                "to",letter.getTo(),
-                "from",letter.getFrom(),
+                "to",letter.getReceiver(),
+                "from",letter.getAuthor(),
                 "body",letter.getBody()
                 );
 

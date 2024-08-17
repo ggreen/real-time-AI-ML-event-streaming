@@ -26,4 +26,5 @@ public class AiModelConfig {
     {
         return new LetterToDocument();
     }
+
 }

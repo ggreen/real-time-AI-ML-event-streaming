@@ -10,7 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
+import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
+import realtime.ai.ml.event.streaming.web.repository.entity.LetterEntity;
+import realtime.ai.ml.event.streaming.web.repository.LetterRepository;
 
 import java.util.List;
 
@@ -28,29 +31,49 @@ class LetterQueryControllerTest {
 
     @Mock
     private VectorStore vectorStore;
+    @Mock
+    private LetterRepository letterRepository;
     private LetterResults results = JavaBeanGeneratorCreator.of(LetterResults.class).create();
 
     @Mock
     private Document document;
     private List<Document> documents = asList(document);
     @Mock
-    private Converter<Document, LetterResults> function;
+    private Converter<Document, LetterResults> toLetterResults;
+
+    @Mock
+    private Converter<Document,Letter> toLetter;
+
     private double threshold = 0.33;
+    private String to = "user";
+    private String id = "id";
+    private LetterEntity letterEntity = new LetterEntity(id,results.getLetter());
 
     @BeforeEach
     void setUp() {
-        subject = new LetterQueryController(vectorStore,function,threshold);
+        subject = new LetterQueryController(vectorStore,toLetterResults,letterRepository,threshold);
     }
 
     @Test
     void searchBySubject() {
 
         when(vectorStore.similaritySearch(any(SearchRequest.class))).thenReturn(documents);
-        when(function.convert(any())).thenReturn(results);
+        when(toLetterResults.convert(any())).thenReturn(results);
 
         List<LetterResults> expected = asList(results);
 
         var actual = subject.searchBySubject(subjectText);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void listByTo() {
+
+        List<Letter> expected =  asList(letterEntity.getLetter());
+        when(letterRepository.findByLetterTo(to)).thenReturn(expected);
+
+        List<Letter> actual = subject.searchByTo(to);
 
         assertEquals(expected, actual);
     }

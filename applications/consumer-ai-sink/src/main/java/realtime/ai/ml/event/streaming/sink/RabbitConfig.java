@@ -7,13 +7,15 @@
 
 package realtime.ai.ml.event.streaming.sink;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.ConnectionNameStrategy;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.function.context.config.JsonMessageConverter;
+import org.springframework.cloud.function.json.JacksonMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.converter.MessageConverter;
 
 @Configuration
 @Slf4j
@@ -38,9 +40,9 @@ public class RabbitConfig {
     }
 
     @Bean
-    public MessageConverter messageConverter()
+    MessageConverter messageConverter(ObjectMapper objectMapper)
     {
-        return new Jackson2JsonMessageConverter();
-    }
+        return new JsonMessageConverter(new JacksonMapper(objectMapper));
 
+    }
 }

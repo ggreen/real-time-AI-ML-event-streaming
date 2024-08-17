@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ConsumerAiSink {
+public class ConsumerAiSinkApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConsumerAiSink.class, args);
+		SpringApplication.run(ConsumerAiSinkApp.class, args);
 	}
 
 }
