@@ -4,8 +4,8 @@ contentType:  application/json
 
 ```json
 {
-  "from" : "me",
-  "to" : "you",
+  "author" : "me",
+  "receiver" : "you",
   "subject" : "I love spring",
   "body" : "Do you really"
 }

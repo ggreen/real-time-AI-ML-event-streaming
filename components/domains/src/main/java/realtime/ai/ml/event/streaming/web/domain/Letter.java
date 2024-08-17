@@ -14,4 +14,5 @@ public class Letter {
     private String receiver;
     private String subject;
     private String body;
+    private long timeMillis;
 }

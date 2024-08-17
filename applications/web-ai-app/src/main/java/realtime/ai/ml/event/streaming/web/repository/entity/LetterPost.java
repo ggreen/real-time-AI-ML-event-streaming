@@ -2,6 +2,7 @@ package realtime.ai.ml.event.streaming.web.repository.entity;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +15,8 @@ import realtime.ai.ml.event.streaming.web.domain.Letter;
 @NoArgsConstructor
 @Builder
 @Entity
-public class LetterEntity {
+@Table(name="letter_entity")
+public class LetterPost {
     @Id
     private String Id;
 

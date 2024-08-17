@@ -10,9 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.data.domain.Limit;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
-import realtime.ai.ml.event.streaming.web.repository.entity.LetterEntity;
+import realtime.ai.ml.event.streaming.web.repository.entity.LetterPost;
 import realtime.ai.ml.event.streaming.web.repository.LetterRepository;
 
 import java.util.List;
@@ -47,7 +48,8 @@ class LetterQueryControllerTest {
     private double threshold = 0.33;
     private String to = "user";
     private String id = "id";
-    private LetterEntity letterEntity = new LetterEntity(id,results.getLetter());
+    private LetterPost letterPost = new LetterPost(id,results.getLetter());
+    private Limit limit = Limit.of(10);
 
     @BeforeEach
     void setUp() {
@@ -70,10 +72,10 @@ class LetterQueryControllerTest {
     @Test
     void listByTo() {
 
-        List<Letter> expected =  asList(letterEntity.getLetter());
-        when(letterRepository.findByLetterTo(to)).thenReturn(expected);
+        List<LetterPost> expected =  asList(letterPost);
+        when(letterRepository.findByLetterReceiver(to,limit)).thenReturn(expected);
 
-        List<Letter> actual = subject.searchByTo(to);
+        List<LetterPost> actual = subject.searchByReceiver(to,limit.max());
 
         assertEquals(expected, actual);
     }

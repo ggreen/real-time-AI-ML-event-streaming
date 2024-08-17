@@ -25,9 +25,10 @@ class LetterToDocumentTest {
     void convert() {
 
         Map<String, Object> metadata = Map.of(
-                "to",letter.getReceiver(),
-                "from",letter.getAuthor(),
-                "body",letter.getBody()
+                "receiver",letter.getReceiver(),
+                "author",letter.getAuthor(),
+                "body",letter.getBody(),
+                "timeMillis",letter.getTimeMillis()
                 );
 
         var expected = new Document(letter.getSubject(),metadata);

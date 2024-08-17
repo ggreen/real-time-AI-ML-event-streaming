@@ -10,6 +10,12 @@ spring:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
         dimensions: 100
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
 ai:
   model:
     uri: "http://localhost:8091/dl4jWord2Vectors"

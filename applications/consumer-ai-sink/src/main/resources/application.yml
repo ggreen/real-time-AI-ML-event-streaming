@@ -30,9 +30,10 @@ spring:
 #              container-type: stream
               autoBindDlq: true
   jpa:
-    generate-ddl: true
+    generate-ddl: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+    show-sql: true
 ai:
   model.word.vector.path: "/Users/Projects/PlayGround/ai-ml/deeplearning4j/dev/deeplearning4j-examples/dl4j-examples/src/runtime/data/GoogleNews-vectors-negative300.bin.gz"
   vector.similarity.search.threshold: 0.000003
