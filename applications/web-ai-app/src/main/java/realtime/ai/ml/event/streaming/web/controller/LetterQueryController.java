@@ -7,7 +7,6 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Limit;
 import org.springframework.web.bind.annotation.*;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
 import realtime.ai.ml.event.streaming.web.repository.LetterRepository;
 import realtime.ai.ml.event.streaming.web.repository.entity.LetterPost;
@@ -46,8 +45,8 @@ public class LetterQueryController {
     }
 
     @GetMapping("{receiver}/{limit}")
-    public List<LetterPost> searchByReceiver(@PathVariable String receiver, int limit) {
+    public List<LetterPost> searchByReceiver(@PathVariable String receiver, @PathVariable int limit) {
 
-        return this.letterRepository.findByLetterReceiver(receiver, Limit.of(limit));
+        return this.letterRepository.findByLetterReceiverOrderByLetterTimeMsDesc(receiver, Limit.of(limit));
     }
 }

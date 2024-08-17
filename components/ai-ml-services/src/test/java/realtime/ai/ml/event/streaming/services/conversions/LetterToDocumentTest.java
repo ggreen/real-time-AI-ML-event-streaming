@@ -28,7 +28,7 @@ class LetterToDocumentTest {
                 "receiver",letter.getReceiver(),
                 "author",letter.getAuthor(),
                 "body",letter.getBody(),
-                "timeMillis",letter.getTimeMillis()
+                "timeMs",letter.getTimeMs()
                 );
 
         var expected = new Document(letter.getSubject(),metadata);

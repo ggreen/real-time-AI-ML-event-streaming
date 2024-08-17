@@ -73,7 +73,7 @@ class LetterQueryControllerTest {
     void listByTo() {
 
         List<LetterPost> expected =  asList(letterPost);
-        when(letterRepository.findByLetterReceiver(to,limit)).thenReturn(expected);
+        when(letterRepository.findByLetterReceiverOrderByLetterTimeMsDesc(to,limit)).thenReturn(expected);
 
         List<LetterPost> actual = subject.searchByReceiver(to,limit.max());
 

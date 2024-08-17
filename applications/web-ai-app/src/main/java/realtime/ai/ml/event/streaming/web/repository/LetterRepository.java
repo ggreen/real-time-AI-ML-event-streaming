@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface LetterRepository extends CrudRepository<LetterPost,String> {
-    List<LetterPost> findByLetterReceiver(String to, Limit limit);
+    List<LetterPost> findByLetterReceiverOrderByLetterTimeMsDesc(String to, Limit limit);
 }

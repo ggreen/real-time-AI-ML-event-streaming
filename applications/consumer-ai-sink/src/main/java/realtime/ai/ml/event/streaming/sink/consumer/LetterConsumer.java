@@ -28,6 +28,7 @@ public class LetterConsumer implements Consumer<Message<Letter>> {
     public void accept(Message<Letter> letterMessage) {
 
         var letter = letterMessage.getPayload();
+        prepareLetter(letter);
 
         vectorStore.add(Collections.singletonList(letterToDocument.convert(letter)));
         var id = valueOf(letterMessage.getHeaders().get("id"));
@@ -35,5 +36,15 @@ public class LetterConsumer implements Consumer<Message<Letter>> {
         var letterEntity = LetterEntity.builder().Id(id).letter(letter).build();
         letterRepository.save(letterEntity);
 
+    }
+
+    /**
+     *
+     * @param letter the letter
+     * @return
+     */
+    void prepareLetter(Letter letter) {
+        if(letter.getTimeMs() == null || letter.getTimeMs().equals(0L))
+            letter.setTimeMs(System.currentTimeMillis());
     }
 }

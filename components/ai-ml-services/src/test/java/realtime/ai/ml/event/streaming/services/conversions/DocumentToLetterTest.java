@@ -36,7 +36,7 @@ class DocumentToLetterTest {
                 "distance",expected.getDistance(),
                 "receiver",expected.getLetter().getReceiver(),
                 "author",expected.getLetter().getAuthor(),
-                "timeMillis",expected.getLetter().getTimeMillis());
+                "timeMs",expected.getLetter().getTimeMs());
 
         when(document.getContent()).thenReturn(expected.getLetter().getSubject());
         when(document.getMetadata()).thenReturn(metaData);

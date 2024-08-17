@@ -32,7 +32,7 @@ public class DocumentToLetter implements Converter<Document, LetterResults> {
                     .body(Text.toString(metaData.get("body")));
 
             letterBuilder
-                    .timeMillis(TextToLong.fromObject(metaData.get("timeMillis"),0L));
+                    .timeMs(TextToLong.fromObject(metaData.get("timeMs"),0L));
         }
 
         return letterResultsBuilder.letter(letterBuilder.build()).build();
