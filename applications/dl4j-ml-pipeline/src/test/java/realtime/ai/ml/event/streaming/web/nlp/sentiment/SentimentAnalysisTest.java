@@ -1,6 +1,7 @@
 package realtime.ai.ml.event.streaming.web.nlp.sentiment;
 
 import lombok.SneakyThrows;
+import nyla.solutions.core.data.collections.CapacityQueue;
 import nyla.solutions.core.io.IO;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
@@ -20,6 +21,7 @@ import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentData;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
@@ -31,7 +33,7 @@ class SentimentAnalysisTest {
     public static String wordVectorsPath = "/Users/Projects/PlayGround/ai-ml/deeplearning4j/dev/deeplearning4j-examples/dl4j-examples/src/runtime/data/GoogleNews-vectors-negative300.bin.gz";
     private static SentimentDataSetIterator training ;
     private static SentimentDataSetIterator testing;
-    private static int MAX_SIZE = 2;
+    private static int MAX_SIZE = 10000;
 
     private SentimentAnalysis subject;
     private static WordVectors wordVectors = Mockito.mock(WordVectors.class);
@@ -149,7 +151,7 @@ class SentimentAnalysisTest {
     private static SentimentDataSetIterator constructTraining() {
         String dir = "/Users/Projects/solutions/AI-ML/dev/real-time-AI-ML-event-streaming/applications/dl4j-ml-pipeline/runtime/data/aclImdb/train";
 
-        List<SentimentData> sentiments = new ArrayList<>();
+        CapacityQueue<SentimentData> sentiments = new CapacityQueue<>(new LinkedList<>(),MAX_SIZE);
 
         int count =0;
 
