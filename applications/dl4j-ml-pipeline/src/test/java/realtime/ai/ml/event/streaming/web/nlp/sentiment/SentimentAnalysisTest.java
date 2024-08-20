@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.nd4j.linalg.api.ndarray.INDArray;
@@ -24,16 +23,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
-
 @ExtendWith(MockitoExtension.class)
 class SentimentAnalysisTest {
 
     public static String wordVectorsPath = "/Users/Projects/PlayGround/ai-ml/deeplearning4j/dev/deeplearning4j-examples/dl4j-examples/src/runtime/data/GoogleNews-vectors-negative300.bin.gz";
     private static SentimentDataSetIterator training ;
     private static SentimentDataSetIterator testing;
-    private static int MAX_SIZE = 10000;
+    private static int MAX_SIZE = 10;
 
     private SentimentAnalysis subject;
     private static WordVectors wordVectors = Mockito.mock(WordVectors.class);
