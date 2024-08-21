@@ -5,8 +5,7 @@ import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import realtime.ai.ml.event.streaming.web.nlp.vectors.Dl4jWord2Vectors;
+import realtime.ai.ml.event.streaming.web.nlp.sentiment.conversions.Dl4jWord2Vectors;
 
 import java.io.File;
 
@@ -27,7 +26,7 @@ public class Dl4jModelConfig {
 
     @Bean
     public Dl4jWord2Vectors dl4jWord2Vectors(WordVectors word2Vec,
-                            @Value("${spring.ai.vectorstore.pgvector.dimensions}")
+                                             @Value("${spring.ai.vectorstore.pgvector.dimensions}")
                                              int dimensionLength) {
         return new Dl4jWord2Vectors(word2Vec,dimensionLength);
 
