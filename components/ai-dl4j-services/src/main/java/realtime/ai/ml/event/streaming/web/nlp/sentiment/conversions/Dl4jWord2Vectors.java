@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-@Component
 public class Dl4jWord2Vectors implements Function<String,List<Double>> {
 
     private final WordVectors word2Vec;

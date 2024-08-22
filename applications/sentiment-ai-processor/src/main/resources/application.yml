@@ -1,0 +1,41 @@
+server:
+  port: 0
+spring:
+  application:
+    name: "consumer-ai-sink"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+  ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 100
+  cloud:
+    function:
+      definition: letterConsumer
+    stream:
+      bindings:
+        letterConsumer-in-0:
+          destination: letters
+          group: consumer-ai-sink
+          consumer:
+            concurrency: 1
+      rabbit:
+        bindings:
+          letterConsumer-in-0:
+            consumer:
+#              queueNameGroupOnly: true
+#              container-type: stream
+              autoBindDlq: true
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+ai:
+  model:
+    word.vector.path: "/Users/Projects/PlayGround/ai-ml/deeplearning4j/dev/deeplearning4j-examples/dl4j-examples/src/runtime/data/GoogleNews-vectors-negative300.bin.gz"
+    uri: "http://localhost:8091/dl4jWord2Vectors"
+  vector.similarity.search.threshold: 0.000003

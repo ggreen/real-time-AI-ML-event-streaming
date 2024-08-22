@@ -1,13 +1,21 @@
 package realtime.ai.ml.event.streaming.web;
 
+import lombok.SneakyThrows;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
+import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
+import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import realtime.ai.ml.event.streaming.web.nlp.sentiment.conversions.Dl4jWord2Vectors;
+import realtime.ai.ml.event.streaming.services.Text2VectorsModel;
+import realtime.ai.ml.event.streaming.services.nlp.vectors.vectors.Text2Vectors;
+import realtime.ai.ml.event.streaming.web.nlp.sentiment.Dl4LetterSentimentService;
 
 import java.io.File;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.function.Function;
 
 @Configuration
 public class Dl4jModelConfig {
@@ -18,6 +26,12 @@ public class Dl4jModelConfig {
     private WordVectors wordVectors;
 
     @Bean
+    EmbeddingModel embeddingModel(Function<String, List<Double>> converter)
+    {
+        return new Text2VectorsModel(text -> converter.apply(text));
+    }
+
+    @Bean
     WordVectors wordVectorsCreator()
     {
 
@@ -25,10 +39,15 @@ public class Dl4jModelConfig {
     }
 
     @Bean
-    public Dl4jWord2Vectors dl4jWord2Vectors(WordVectors word2Vec,
-                                             @Value("${spring.ai.vectorstore.pgvector.dimensions}")
-                                             int dimensionLength) {
-        return new Dl4jWord2Vectors(word2Vec,dimensionLength);
+    Dl4LetterSentimentService dl4LetterSentimentService(MultiLayerNetwork model, WordVectors word2Vec)
+    {
+        return new Dl4LetterSentimentService(model,word2Vec);
+    }
 
+    @SneakyThrows
+    @Bean
+    MultiLayerNetwork model(@Value("${ai.mode.file.path}") String filePath)
+    {
+        return MultiLayerNetwork.load(Paths.get(filePath).toFile(),true);
     }
 }

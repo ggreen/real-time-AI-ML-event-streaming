@@ -54,8 +54,6 @@ class SentimentAnalysisTest {
     @BeforeEach
     void setUp() {
 
-
-
         subject = new SentimentAnalysis(wordVectors, training, testing);
     }
 

@@ -1,7 +1,7 @@
 package realtime.ai.ml.event.streaming.web.nlp.sentiment;
 
 
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreprocessor;
@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class Dl4LetterSentimentService implements LetterSentimentService {
     private final MultiLayerNetwork model;
     private final TokenizerFactory tokenizerFactory;
@@ -43,9 +44,9 @@ public class Dl4LetterSentimentService implements LetterSentimentService {
         long timeSeriesLength = networkOutput.size(2);
         INDArray probabilitiesAtLastWord = networkOutput.get(NDArrayIndex.point(0), NDArrayIndex.all(), NDArrayIndex.point(timeSeriesLength - 1));
 
-        System.out.println("\n\n-------------------------------");
-        System.out.println("Review: \n" + letter.getSubject());
-        System.out.println("\n\nProbabilities at last time step:");
+        log.info("Review: {}", letter.getSubject());
+        log.info("Probabilities at last time step:");
+        log.info("probabilitiesAtLastWord: {}",probabilitiesAtLastWord);
         double positiveProbability = probabilitiesAtLastWord.getDouble(0);
         double negativeProbability = probabilitiesAtLastWord.getDouble(1);
 
