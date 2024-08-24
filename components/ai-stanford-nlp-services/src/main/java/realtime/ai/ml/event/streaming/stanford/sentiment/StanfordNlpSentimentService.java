@@ -1,8 +1,5 @@
-package com.vmware.geode.twitter.analysis;
+package realtime.ai.ml.event.streaming.stanford.sentiment;
 
-import com.vmware.geode.twitter.domain.SentimentType;
-import com.vmware.geode.twitter.domain.Tweet;
-import com.vmware.geode.twitter.domain.TweetSentiment;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -10,6 +7,10 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
+import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
+import realtime.ai.ml.event.streaming.web.domain.Letter;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 import java.util.Properties;
 
@@ -18,11 +19,11 @@ import java.util.Properties;
  *
  * @author Gregory Green
  */
-public class TweetSentimentAnalysis
+public class StanfordNlpSentimentService implements LetterSentimentService
 {
 
     private final StanfordCoreNLP pipeline;
-    public TweetSentimentAnalysis()
+    public StanfordNlpSentimentService()
     {
         final Properties props = new Properties();
         props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
@@ -76,18 +77,18 @@ public class TweetSentimentAnalysis
         }
     }
 
-    public TweetSentiment analyzeTweet(Tweet tweet)
+    public LetterSentiment analyze(Letter letter)
     {
-        var sentiment = this.analyzeSentiment(tweet.getText());
+        var sentiment = this.analyzeSentiment(letter.getSubject());
         var polarity = toPolarity(sentiment);
-        return TweetSentiment.builder()
-                    .tweet(tweet)
+        return LetterSentiment.builder()
+                    .letter(letter)
                     .polarity(polarity)
-                    .sentimentType(sentiment)
+                    .sentiment(sentiment)
                     .build();
     }
 
-    protected double toPolarity(SentimentType sentiment)
+    public double toPolarity(SentimentType sentiment)
     {
         switch (sentiment)
         {

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.LetterSentiment;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 import realtime.ai.ml.event.streaming.web.nlp.sentiment.conversions.Dl4jWord2Vectors;
 
 import java.util.List;

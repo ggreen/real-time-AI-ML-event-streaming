@@ -2,7 +2,7 @@ server:
   port: 0
 spring:
   application:
-    name: "consumer-ai-sink"
+    name: "sentiment-ai-processor"
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -14,20 +14,30 @@ spring:
         dimensions: 100
   cloud:
     function:
-      definition: letterConsumer
+      definition: letterToSentiment
     stream:
       bindings:
-        letterConsumer-in-0:
+        letterToSentiment-in-0:
           destination: letters
-          group: consumer-ai-sink
+          group: sentiment-ai-processor
+          consumer:
+            concurrency: 1
+        letterToSentiment-out-0:
+          destination: letter-sentiments
+#          group: sentiment-ai-processor
           consumer:
             concurrency: 1
       rabbit:
         bindings:
-          letterConsumer-in-0:
+          letterToSentiment-in-0:
             consumer:
 #              queueNameGroupOnly: true
 #              container-type: stream
+              autoBindDlq: true
+          letterToSentiment-out-0:
+            consumer:
+              #              queueNameGroupOnly: true
+              #              container-type: stream
               autoBindDlq: true
   jpa:
     generate-ddl: false
@@ -39,3 +49,6 @@ ai:
     word.vector.path: "/Users/Projects/PlayGround/ai-ml/deeplearning4j/dev/deeplearning4j-examples/dl4j-examples/src/runtime/data/GoogleNews-vectors-negative300.bin.gz"
     uri: "http://localhost:8091/dl4jWord2Vectors"
   vector.similarity.search.threshold: 0.000003
+  sentiment:
+    service:
+      uri: "http://localhost:8092/letterToLetterSentiment"

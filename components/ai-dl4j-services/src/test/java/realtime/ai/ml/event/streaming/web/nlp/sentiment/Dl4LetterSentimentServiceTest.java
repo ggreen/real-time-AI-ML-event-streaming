@@ -8,9 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
-import realtime.ai.ml.event.streaming.web.domain.LetterSentiment;
-import realtime.ai.ml.event.streaming.web.domain.Sentiment;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +35,7 @@ class Dl4LetterSentimentServiceTest {
 
     @Test
     void analyze() {
-        expected.setSentiment(Sentiment.negative);
+        expected.setSentiment(SentimentType.NEGATIVE);
         when(wordVectors.hasWord(anyString())).thenReturn(true);
 
         assertEquals(expected, subject.analyze(expected.getLetter()));

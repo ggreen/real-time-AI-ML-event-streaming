@@ -26,12 +26,12 @@
 		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-corenlp</artifactId>
-			<version>4.4.0</version>
+			<version>4.5.7</version>
 		</dependency>
 		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-corenlp</artifactId>
-			<version>4.4.0</version>
+			<version>4.5.7</version>
 			<classifier>models</classifier>
 		</dependency>
 		<dependency>
@@ -45,14 +45,19 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.vmware</groupId>
-			<artifactId>twitter-domain</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>com.github.nyla-solutions</groupId>
 			<artifactId>nyla.solutions.core</artifactId>
 			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>realtime.ai.ml.event.streaming</groupId>
+			<artifactId>domains</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>realtime.ai.ml.event.streaming</groupId>
+			<artifactId>ai-ml-services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>

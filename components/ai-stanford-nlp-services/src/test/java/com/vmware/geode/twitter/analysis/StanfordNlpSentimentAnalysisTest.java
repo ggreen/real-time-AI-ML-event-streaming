@@ -1,26 +1,28 @@
 package com.vmware.geode.twitter.analysis;
 
-import com.vmware.geode.twitter.domain.SentimentType;
-import com.vmware.geode.twitter.domain.Tweet;
-import com.vmware.geode.twitter.domain.TweetSentiment;
+
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import realtime.ai.ml.event.streaming.stanford.sentiment.StanfordNlpSentimentService;
+import realtime.ai.ml.event.streaming.web.domain.Letter;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TweetSentimentAnalysisTest
+class StanfordNlpSentimentAnalysisTest
 {
 
-    private TweetSentimentAnalysis subject = new TweetSentimentAnalysis();
-    private Tweet tweet = JavaBeanGeneratorCreator.of(Tweet.class).create();
+    private StanfordNlpSentimentService subject = new StanfordNlpSentimentService();
+    private Letter letter = JavaBeanGeneratorCreator.of(Letter.class).create();
 
     @Test
     void analyzeSentiment()
     {
-        var subject = new TweetSentimentAnalysis();
-        tweet.setText("Imani is greatness little sister ever");
-        var actual = subject.analyzeSentiment(tweet.getText());
+        var subject = new StanfordNlpSentimentService();
+        letter.setSubject("Imani is greatness little sister ever");
+        var actual = subject.analyzeSentiment(letter.getSubject());
         assertEquals(SentimentType.POSITIVE,actual);
     }
 
@@ -28,12 +30,13 @@ class TweetSentimentAnalysisTest
     void analyzeTweet()
     {
         String id = "0";
-        var tweet = new Tweet(id,"Imani and Nyla are the best daughters ever. Always trying their best");
-        var actual = subject.analyzeTweet(tweet);
+        var letter = Letter.builder().subject("Imani and Nyla are the best daughters ever. Always trying their best")
+                .build();
+        var actual = subject.analyze(letter);
         double polarity = 1;
-        var expected = TweetSentiment.builder()
-                                     .tweet(tweet)
-                                     .sentimentType(SentimentType.POSITIVE)
+        var expected = LetterSentiment.builder()
+                                     .letter(letter)
+                                     .sentiment(SentimentType.POSITIVE)
                 .polarity(1).build();
 
         assertEquals(expected,actual);
@@ -42,9 +45,9 @@ class TweetSentimentAnalysisTest
     @Test
     void analyzeSentiment_WhenNegative()
     {
-        var subject = new TweetSentimentAnalysis();
-        tweet.setText("Joe has been just talking and talking, can he just be quiet, stop it already, be quiet");
-        var actual = subject.analyzeSentiment(tweet.getText());
+        var subject = new StanfordNlpSentimentService();
+        letter.setSubject("Joe has been just talking and talking, can he just be quiet, stop it already, be quiet");
+        var actual = subject.analyzeSentiment(letter.getSubject());
         assertEquals(SentimentType.NEGATIVE,actual);
     }
 

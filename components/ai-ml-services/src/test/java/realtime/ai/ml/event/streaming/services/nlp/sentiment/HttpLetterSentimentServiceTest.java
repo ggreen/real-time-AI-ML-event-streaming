@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.client.RestTemplate;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.LetterSentiment;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 
 import java.net.URI;
 import java.net.URISyntaxException;

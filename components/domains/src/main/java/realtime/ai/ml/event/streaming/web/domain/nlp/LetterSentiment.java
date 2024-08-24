@@ -1,9 +1,10 @@
-package realtime.ai.ml.event.streaming.web.domain;
+package realtime.ai.ml.event.streaming.web.domain.nlp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import realtime.ai.ml.event.streaming.web.domain.Letter;
 
 @Data
 @AllArgsConstructor
@@ -11,5 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class LetterSentiment {
     private Letter letter;
-    private Sentiment sentiment;
+    private double polarity;
+    private SentimentType sentiment;
 }

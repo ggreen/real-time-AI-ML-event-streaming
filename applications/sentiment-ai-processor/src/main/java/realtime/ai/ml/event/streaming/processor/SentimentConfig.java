@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.HttpLetterSentimentService;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.LetterSentiment;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 
 import java.net.URI;
 import java.util.function.Function;
