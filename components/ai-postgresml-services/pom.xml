@@ -9,23 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>realtime.ai.ml.event.streaming</groupId>
-	<artifactId>web-ai-app</artifactId>
+	<artifactId>ai-postgresml-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>web-ai-app</name>
-	<description>web-ai-app</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	<name>ai-postgresml-services</name>
+	<description>ai-postgresml-services</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-ai.version>1.0.0-M1</spring-ai.version>
@@ -39,34 +26,6 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-postgresml-spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>realtime.ai.ml.event.streaming</groupId>
-			<artifactId>domains</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>realtime.ai.ml.event.streaming</groupId>
-			<artifactId>ai-ml-services</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
-			<version>2.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.1.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
@@ -78,23 +37,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-core</artifactId>
-			<version>${dl4j-root.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-pgvector-store-spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-retry</artifactId>
-		</dependency>
-
-		<!--		<dependency>-->
+<!--		<dependency>-->
 <!--			<groupId>org.springframework.ai</groupId>-->
-<!--			<artifactId>spring-ai-postgresml-spring-boot-starter</artifactId>-->
+<!--			<artifactId>spring-ai-pgvector-store-spring-boot-starter</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.ai</groupId>-->
+<!--			<artifactId>spring-ai-retry</artifactId>-->
 <!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>
@@ -142,8 +91,29 @@
 			<artifactId>spring-cloud-stream-test-binder</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-    </dependencies>
+        <dependency>
+            <groupId>realtime.ai.ml.event.streaming</groupId>
+            <artifactId>domains</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.ai</groupId>
+			<artifactId>spring-ai-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>realtime.ai.ml.event.streaming</groupId>
+			<artifactId>ai-ml-services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+	</dependencies>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -165,18 +135,18 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--				<configuration>-->
+<!--					<excludes>-->
+<!--						<exclude>-->
+<!--							<groupId>org.projectlombok</groupId>-->
+<!--							<artifactId>lombok</artifactId>-->
+<!--						</exclude>-->
+<!--					</excludes>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 	<repositories>

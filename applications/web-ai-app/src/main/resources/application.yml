@@ -18,6 +18,6 @@ spring:
 
 ai:
   model:
-    uri: "http://localhost:8091/dl4jWord2Vectors"
-    word.vector.path: "/Users/Projects/PlayGround/ai-ml/deeplearning4j/dev/deeplearning4j-examples/dl4j-examples/src/runtime/data/GoogleNews-vectors-negative300.bin.gz"
+#    uri: "http://localhost:8091/dl4jWord2Vectors"
+#    word.vector.path: "/Users/Projects/PlayGround/ai-ml/deeplearning4j/dev/deeplearning4j-examples/dl4j-examples/src/runtime/data/GoogleNews-vectors-negative300.bin.gz"
   vector.similarity.search.threshold: 0.000003
