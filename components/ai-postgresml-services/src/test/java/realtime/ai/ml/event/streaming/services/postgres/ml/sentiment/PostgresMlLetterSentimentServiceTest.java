@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 import java.util.List;
@@ -21,11 +20,11 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class PostgresMlLetterServiceTest {
+class PostgresMlLetterSentimentServiceTest {
 
-    private PostgresMlLetterService subject;
+    private PgMlLetterSentimentService subject;
 
-    private Letter letter = JavaBeanGeneratorCreator.of(Letter.class).create();
+    private Letter letterSentiment = JavaBeanGeneratorCreator.of(Letter.class).create();
     private SentimentType sentiment = SentimentType.NEGATIVE;
     private double polarity = 1.0;
 
@@ -34,26 +33,26 @@ class PostgresMlLetterServiceTest {
 
     @BeforeEach
     void setUp() {
-        subject = new PostgresMlLetterService(jdbcTemplate);
+        subject = new PgMlLetterSentimentService(jdbcTemplate);
     }
 
     @Test
     void analyze() {
-        var expected = LetterSentiment
+        var expected = realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment
                 .builder()
-                .letter(letter)
+                .letter(letterSentiment)
                 .sentiment(sentiment)
                 .polarity(polarity)
                 .build();
 
 
-        List<LetterSentiment> list = asList(expected);
+        List<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> list = asList(expected);
 
         when(jdbcTemplate.query(anyString(),
                 any(RowMapper.class), any(Object[].class)))
                 .thenReturn(list);
 
-        var actual = subject.analyze(letter);
+        var actual = subject.analyze(letterSentiment);
 
         assertEquals(expected, actual);
     }

@@ -11,14 +11,14 @@ spring:
       pgvector:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
-        dimensions: 100
+        dimensions: 384
   cloud:
     function:
       definition: letterConsumer
     stream:
       bindings:
         letterConsumer-in-0:
-          destination: letters
+          destination: letter-sentiments
           group: consumer-ai-sink
           consumer:
             concurrency: 1

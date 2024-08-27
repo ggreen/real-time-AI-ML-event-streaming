@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import realtime.ai.ml.event.streaming.stanford.sentiment.StanfordNlpSentimentService;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,14 +14,14 @@ class StanfordNlpSentimentAnalysisTest
 {
 
     private StanfordNlpSentimentService subject = new StanfordNlpSentimentService();
-    private Letter letter = JavaBeanGeneratorCreator.of(Letter.class).create();
+    private Letter letterSentiment = JavaBeanGeneratorCreator.of(Letter.class).create();
 
     @Test
     void analyzeSentiment()
     {
         var subject = new StanfordNlpSentimentService();
-        letter.setSubject("Imani is greatness little sister ever");
-        var actual = subject.analyzeSentiment(letter.getSubject());
+        letterSentiment.setSubject("Imani is greatness little sister ever");
+        var actual = subject.analyzeSentiment(letterSentiment.getSubject());
         assertEquals(SentimentType.POSITIVE,actual);
     }
 
@@ -34,7 +33,7 @@ class StanfordNlpSentimentAnalysisTest
                 .build();
         var actual = subject.analyze(letter);
         double polarity = 1;
-        var expected = LetterSentiment.builder()
+        var expected = realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment.builder()
                                      .letter(letter)
                                      .sentiment(SentimentType.POSITIVE)
                 .polarity(1).build();
@@ -46,8 +45,8 @@ class StanfordNlpSentimentAnalysisTest
     void analyzeSentiment_WhenNegative()
     {
         var subject = new StanfordNlpSentimentService();
-        letter.setSubject("Joe has been just talking and talking, can he just be quiet, stop it already, be quiet");
-        var actual = subject.analyzeSentiment(letter.getSubject());
+        letterSentiment.setSubject("Joe has been just talking and talking, can he just be quiet, stop it already, be quiet");
+        var actual = subject.analyzeSentiment(letterSentiment.getSubject());
         assertEquals(SentimentType.NEGATIVE,actual);
     }
 

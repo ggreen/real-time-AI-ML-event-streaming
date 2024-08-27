@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 import realtime.ai.ml.event.streaming.web.nlp.sentiment.conversions.Dl4jWord2Vectors;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class WebFunctionsConfig {
     }
 
     @Bean
-    Function<Letter, LetterSentiment> d4lLetterSentiment(LetterSentimentService letterSentimentService)
+    Function<Letter, realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> d4lLetterSentiment(LetterSentimentService letterSentimentService)
     {
         return letter -> letterSentimentService.analyze(letter);
     }

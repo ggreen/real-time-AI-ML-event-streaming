@@ -18,33 +18,38 @@ import static java.lang.String.valueOf;
 
 @Component
 @RequiredArgsConstructor
-public class LetterConsumer implements Consumer<Message<Letter>> {
+public class LetterConsumer implements Consumer<Message<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment>> {
 
     private final VectorStore vectorStore;
     private final LetterRepository letterRepository;
-    private final Converter<Letter,Document> letterToDocument;
+    private final Converter<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment,Document> letterToDocument;
 
     @Transactional
-    public void accept(Message<Letter> letterMessage) {
+    public void accept(Message<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> letterMessage) {
 
-        var letter = letterMessage.getPayload();
+        var letterSentiment = letterMessage.getPayload();
+        var letter = letterSentiment.getLetter();
         prepareLetter(letter);
 
-        vectorStore.add(Collections.singletonList(letterToDocument.convert(letter)));
+        vectorStore.add(Collections.singletonList(letterToDocument.convert(letterSentiment)));
         var id = valueOf(letterMessage.getHeaders().get("id"));
 
-        var letterEntity = LetterEntity.builder().Id(id).letter(letter).build();
+        var letterEntity = LetterEntity.builder().Id(id).letterSentiment(letter)
+                .polarity(letterSentiment.getPolarity())
+                .sentiment(letterSentiment.getSentiment())
+                .build();
+
         letterRepository.save(letterEntity);
 
     }
 
     /**
      *
-     * @param letter the letter
+     * @param letterSentiment the letter
      * @return
      */
-    void prepareLetter(Letter letter) {
-        if(letter.getTimeMs() == null || letter.getTimeMs().equals(0L))
-            letter.setTimeMs(System.currentTimeMillis());
+    void prepareLetter(Letter letterSentiment) {
+        if(letterSentiment.getTimeMs() == null || letterSentiment.getTimeMs().equals(0L))
+            letterSentiment.setTimeMs(System.currentTimeMillis());
     }
 }

@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ai.document.Document;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
+import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 import java.util.Map;
 
@@ -16,17 +17,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class DocumentToLetterTest {
+class DocumentToLetterSentimentResultsTest {
     private LetterResults expected = JavaBeanGeneratorCreator.of(LetterResults.class).create();
 
     @Mock
     private Document document;
-    private DocumentToLetter subject;
+    private DocumentToLetterResults subject;
 
 
     @BeforeEach
     void setUp() {
-        subject = new DocumentToLetter();
+        subject = new DocumentToLetterResults();
     }
 
     @Test
@@ -36,7 +37,10 @@ class DocumentToLetterTest {
                 "distance",expected.getDistance(),
                 "receiver",expected.getLetter().getReceiver(),
                 "author",expected.getLetter().getAuthor(),
-                "timeMs",expected.getLetter().getTimeMs());
+                "timeMs",expected.getLetter().getTimeMs(),
+                "polarity", expected.getPolarity(),
+                "sentiment", expected.getSentiment().toString()
+                );
 
         when(document.getContent()).thenReturn(expected.getLetter().getSubject());
         when(document.getMetadata()).thenReturn(metaData);
@@ -47,8 +51,25 @@ class DocumentToLetterTest {
     }
 
     @Test
-    void convert_metaDataNull() {
+    void convert_sentimentNull_convertsTo_Neutal() {
+        Map<String, Object> metaData  = Map.of(
+                "body",expected.getLetter().getBody(),
+                "distance",expected.getDistance(),
+                "receiver",expected.getLetter().getReceiver(),
+                "author",expected.getLetter().getAuthor(),
+                "timeMs",expected.getLetter().getTimeMs(),
+                "polarity", expected.getPolarity()
+        );
 
+        when(document.getContent()).thenReturn(expected.getLetter().getSubject());
+        when(document.getMetadata()).thenReturn(metaData);
+
+        var actual = subject.convert(document);
+
+        assertEquals(SentimentType.NEUTRAL, actual.getSentiment());
+    }
+    @Test
+    void convert_metaDataNull() {
 
         when(document.getContent()).thenReturn(expected.getLetter().getSubject());
 

@@ -1,19 +1,20 @@
 package realtime.ai.ml.event.streaming.services.conversions;
 
 import nyla.solutions.core.patterns.conversion.Converter;
+import nyla.solutions.core.patterns.conversion.numbers.TextToDouble;
 import nyla.solutions.core.patterns.conversion.numbers.TextToLong;
 import nyla.solutions.core.util.Text;
 import org.springframework.ai.document.Document;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
-
+import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 /**
  * Convert a document to a letter results
  * @author gregory green
  *
  */
-public class DocumentToLetter implements Converter<Document, LetterResults> {
+public class DocumentToLetterResults implements Converter<Document, LetterResults> {
     @Override
     public LetterResults convert(Document document) {
         var metaData = document.getMetadata();
@@ -33,9 +34,19 @@ public class DocumentToLetter implements Converter<Document, LetterResults> {
 
             letterBuilder
                     .timeMs(TextToLong.fromObject(metaData.get("timeMs"),0L));
+
+
+            letterResultsBuilder.polarity(TextToDouble.fromObject(metaData.get("polarity"),0L));
+
+
+            var sentimentText = Text.toString(metaData.get("sentiment"));
+
+            if(sentimentText == null || sentimentText.isEmpty())
+                letterResultsBuilder.sentiment(SentimentType.NEUTRAL);
+            else
+                letterResultsBuilder.sentiment(SentimentType.valueOf(sentimentText ));
         }
 
         return letterResultsBuilder.letter(letterBuilder.build()).build();
     }
-
 }

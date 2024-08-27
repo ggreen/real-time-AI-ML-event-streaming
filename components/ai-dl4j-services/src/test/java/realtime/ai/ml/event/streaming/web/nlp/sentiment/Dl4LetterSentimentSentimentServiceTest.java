@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class Dl4LetterSentimentServiceTest {
+class Dl4LetterSentimentSentimentServiceTest {
 
     private Dl4LetterSentimentService subject;
 

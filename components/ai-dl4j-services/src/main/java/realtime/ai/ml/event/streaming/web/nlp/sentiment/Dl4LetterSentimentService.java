@@ -14,7 +14,6 @@ import org.nd4j.linalg.indexing.NDArrayIndex;
 import org.springframework.stereotype.Service;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 import java.util.ArrayList;
@@ -38,20 +37,20 @@ public class Dl4LetterSentimentService implements LetterSentimentService {
     }
 
     @Override
-    public LetterSentiment analyze(Letter letter) {
+    public realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment analyze(Letter letterSentiment) {
 
-        INDArray networkOutput = toFeature(letter);
+        INDArray networkOutput = toFeature(letterSentiment);
         long timeSeriesLength = networkOutput.size(2);
         INDArray probabilitiesAtLastWord = networkOutput.get(NDArrayIndex.point(0), NDArrayIndex.all(), NDArrayIndex.point(timeSeriesLength - 1));
 
-        log.info("Review: {}", letter.getSubject());
+        log.info("Review: {}", letterSentiment.getSubject());
         log.info("Probabilities at last time step:");
         log.info("probabilitiesAtLastWord: {}",probabilitiesAtLastWord);
         double positiveProbability = probabilitiesAtLastWord.getDouble(0);
         double negativeProbability = probabilitiesAtLastWord.getDouble(1);
 
 
-        var builder = LetterSentiment.builder().letter(letter);
+        var builder = realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment.builder().letter(letterSentiment);
 
         if(positiveProbability > negativeProbability)
             builder.sentiment(SentimentType.POSITIVE);
@@ -64,9 +63,9 @@ public class Dl4LetterSentimentService implements LetterSentimentService {
 
     }
 
-    public INDArray toFeature(Letter letter) {
+    public INDArray toFeature(Letter letterSentiment) {
 
-        List<String> tokens = tokenizerFactory.create(letter.getSubject()).getTokens();
+        List<String> tokens = tokenizerFactory.create(letterSentiment.getSubject()).getTokens();
         List<String> tokensFiltered = new ArrayList<>();
         for(String t : tokens ){
             if(wordVectors.hasWord(t)) tokensFiltered.add(t);

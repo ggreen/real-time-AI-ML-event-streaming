@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class LetterConsumerTest {
+class LetterSentimentConsumerTest {
 
     private LetterConsumer subject;
 
@@ -31,7 +31,7 @@ class LetterConsumerTest {
     @Mock
     private LetterRepository letterRepository;
 
-    private Letter letter;
+    private realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment letterSentiment;
 
     @Mock
     private Converter<Letter, Document> converter;
@@ -39,20 +39,20 @@ class LetterConsumerTest {
     @Mock
     private Document document;
     @Mock
-    private Message<Letter> letterMsg;
+    private Message<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> letterMsg;
     @Mock
     private MessageHeaders headers;
 
     @BeforeEach
     void setUp() {
-        letter = JavaBeanGeneratorCreator.of(Letter.class).create();
+        letterSentiment = JavaBeanGeneratorCreator.of(realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment.class).create();
         subject = new LetterConsumer(vectorStore,letterRepository,converter);
     }
 
     @Test
     void addLetter() {
 
-        when(letterMsg.getPayload()).thenReturn(letter);
+        when(letterMsg.getPayload()).thenReturn(letterSentiment);
         when(letterMsg.getHeaders()).thenReturn(headers);
         when(converter.convert(any())).thenReturn(document);
 
@@ -66,8 +66,8 @@ class LetterConsumerTest {
     @Test
     void prepareLetter() {
 
-         subject.prepareLetter(letter);
+         subject.prepareLetter(letterSentiment.getLetter());
 
-        assertThat(letter.getTimeMs()).isGreaterThan(0L);
+        assertThat(letterSentiment.getLetter().getTimeMs()).isGreaterThan(0L);
     }
 }

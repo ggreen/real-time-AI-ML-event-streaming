@@ -7,7 +7,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
   ai.vectorstore.pgvector:
-    dimensions: 100
+    dimensions: 384
   cloud:
     function:
       definition: dl4jWord2Vectors;d4lLetterSentiment

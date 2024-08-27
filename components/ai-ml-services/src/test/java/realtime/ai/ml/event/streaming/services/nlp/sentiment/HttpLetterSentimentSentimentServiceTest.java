@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.client.RestTemplate;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,9 +17,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class HttpLetterSentimentServiceTest {
+class HttpLetterSentimentSentimentServiceTest {
 
-    LetterSentiment expected = JavaBeanGeneratorCreator.of(LetterSentiment.class).create();
+    realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment expected = JavaBeanGeneratorCreator.of(realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment.class).create();
     private LetterSentimentService subject;
 
     @Mock

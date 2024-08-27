@@ -9,7 +9,7 @@ spring:
       pgvector:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
-        dimensions: 100
+        dimensions: 384
   jpa:
     generate-ddl: false
     hibernate:

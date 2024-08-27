@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
+import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 @Data
 @AllArgsConstructor
@@ -19,5 +20,9 @@ public class LetterEntity {
     private String Id;
 
     @Embedded
-    private Letter letter;
+    private Letter letterSentiment;
+
+    private double polarity;
+    private SentimentType sentiment;
+
 }

@@ -24,7 +24,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class LetterQueryControllerTest {
+class LetterSentimentQueryControllerTest {
 
     private LetterQueryController subject;
 
@@ -43,7 +43,7 @@ class LetterQueryControllerTest {
     private Converter<Document, LetterResults> toLetterResults;
 
     @Mock
-    private Converter<Document,Letter> toLetter;
+    private Converter<Document, Letter> toLetter;
 
     private double threshold = 0.33;
     private String to = "user";

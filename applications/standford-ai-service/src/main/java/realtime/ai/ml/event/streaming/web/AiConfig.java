@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
 import realtime.ai.ml.event.streaming.stanford.sentiment.StanfordNlpSentimentService;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 
 import java.util.function.Function;
 
@@ -23,7 +22,7 @@ public class AiConfig {
     }
 
     @Bean
-    Function<Letter, LetterSentiment> letterToLetterSentiment(LetterSentimentService service)
+    Function<Letter, realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> letterToLetterSentiment(LetterSentimentService service)
     {
         return letter -> service.analyze(letter);
     }

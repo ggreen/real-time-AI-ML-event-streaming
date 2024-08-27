@@ -8,7 +8,7 @@ import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 @RequiredArgsConstructor
-public class PostgresMlLetterService implements LetterSentimentService {
+public class PgMlLetterSentimentService implements LetterSentimentService {
 
     private final JdbcTemplate jdbcTemplate;
     private String sentimentQuery = """
@@ -24,15 +24,15 @@ public class PostgresMlLetterService implements LetterSentimentService {
             """;
 
     @Override
-    public LetterSentiment analyze(Letter letter) {
+    public LetterSentiment analyze(Letter letterSentiment) {
         var sentiments = jdbcTemplate.query(sentimentQuery,
                 (rs, i) ->
-                LetterSentiment.builder()
-                        .letter(letter)
+                    LetterSentiment.builder()
+                        .letter(letterSentiment)
                         .polarity(rs.getDouble("score"))
                         .sentiment(toSentiment(rs.getString("label")))
                         .build(),
-                letter.getSubject());
+                letterSentiment.getSubject());
 
         if(sentiments == null || sentiments.isEmpty())
             return null;
