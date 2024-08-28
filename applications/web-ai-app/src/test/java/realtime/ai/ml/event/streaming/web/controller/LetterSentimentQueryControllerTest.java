@@ -34,11 +34,12 @@ class LetterSentimentQueryControllerTest {
     private VectorStore vectorStore;
     @Mock
     private LetterRepository letterRepository;
-    private LetterResults results = JavaBeanGeneratorCreator.of(LetterResults.class).create();
+    private LetterResults letterResults = JavaBeanGeneratorCreator.of(LetterResults.class).create();
 
     @Mock
     private Document document;
     private List<Document> documents = asList(document);
+
     @Mock
     private Converter<Document, LetterResults> toLetterResults;
 
@@ -48,11 +49,13 @@ class LetterSentimentQueryControllerTest {
     private double threshold = 0.33;
     private String to = "user";
     private String id = "id";
-    private LetterPost letterPost = new LetterPost(id,results.getLetter());
+    private LetterPost letterPost = JavaBeanGeneratorCreator.of(LetterPost.class).create();
     private Limit limit = Limit.of(10);
 
     @BeforeEach
     void setUp() {
+        this.letterPost.setLetter(this.letterResults.getLetter());
+
         subject = new LetterQueryController(vectorStore,toLetterResults,letterRepository,threshold);
     }
 
@@ -60,9 +63,9 @@ class LetterSentimentQueryControllerTest {
     void searchBySubject() {
 
         when(vectorStore.similaritySearch(any(SearchRequest.class))).thenReturn(documents);
-        when(toLetterResults.convert(any())).thenReturn(results);
+        when(toLetterResults.convert(any())).thenReturn(letterResults);
 
-        List<LetterResults> expected = asList(results);
+        List<LetterResults> expected = asList(letterResults);
 
         var actual = subject.searchBySubject(subjectText);
 
