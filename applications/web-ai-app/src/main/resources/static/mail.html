@@ -13,6 +13,8 @@
     .w3-bar-block .w3-bar-item {padding: 16px}
 </style>
     <script>
+        var pageLetterResults = [];
+
         $(document).ready(function(){
                var serviceUrl = "http://localhost:8080/letters/query/you/20";
 
@@ -20,15 +22,23 @@
                        type: "GET",
                         success: function(letterResults)
                                 {
+                                //save results
+                                pageLetterResults = letterResults;
 
                                 $("#ReceivedLettersPanel").html("");
-
 
                                    //for loop
                                     var letterResultsHtml = "";
 
+                                    var i=0;
+
                                     for (let x in letterResults) {
+
                                         var letterResult = letterResults[x];
+
+                                        if(i == 0)
+                                          drawMainLetter(letterResult);
+
                                         var sentimentHtml = "";
 
                                         if( "POSITIVE" == letterResult.sentiment )
@@ -40,7 +50,6 @@
                                                      "<div class='w3-container'>"+
                                                             "<img class='w3-round w3-margin-right' src='/images/"+letterResult.letter.author+".png' style='width:15%;'><span class='w3-opacity w3-large'>Borge Refsnes</span>"+
                                                             "<h6>Subject: "+letterResult.letter.subject+"</h6>"+
-                                                            "<p>"+letterResult.letter.body+"</p>"+
                                                         "</div>"+
                                                         "<div class='w3-half'>"+
                                                          sentimentHtml+
@@ -50,7 +59,7 @@
 
 
                                         letterResultsHtml +=lrHtml;
-
+                                        i++;
                                      }
 
                                         $("#ReceivedLettersPanel").html(letterResultsHtml);
@@ -61,6 +70,27 @@
                                 }
                         });
            });
+
+        function drawMainLetter(letterResult)
+        {
+            $("#MailFromText").html(letterResult.letter.author);
+            $("#MailSubjectText").html(letterResult.letter.subject);
+            $("#MailBodyText").html(letterResult.letter.body);
+            $("#MailTimeText").html(new Date(letterResult.letter.timeMs).toString());
+
+//
+            var sentimentHtml = "";
+            if( "POSITIVE" == letterResult.sentiment )
+                sentimentHtml = "<button class='w3-button w3-green w3-section' title='Accept'>positive <i class='fa fa-check'></i></button>";
+            else
+                sentimentHtml = "<button class='w3-button w3-red w3-section' title='Decline'>negative <i class='fa fa-remove'></i></button>";
+
+
+            var sentimentBlock = sentimentHtml;
+            $("#MailSentimentText").html(sentimentBlock);
+
+
+        }
     </script>
 </head>
 <body>
@@ -136,14 +166,18 @@
     <div id="Borge" class="w3-container person">
         <br>
         <img class="w3-round  w3-animate-top" src="/w3images/avatar3.png" style="width:20%;">
-        <h5 class="w3-opacity">Subject: Remember Me</h5>
-        <h4><i class="fa fa-clock-o"></i> From Borge Refsnes, Sep 27, 2015.</h4>
+        <h5  class="w3-opacity">Subject: <span id="MailSubjectText"></span></h5>
+        <h4><i class="fa fa-clock-o"></i> From <span id="MailFromText">#nbsp;</span>, <span id="MailTimeText">#nbsp;</span>.</h4>
         <a class="w3-button w3-light-grey" href="#">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
         <a class="w3-button w3-light-grey" href="#">Forward<i class="w3-margin-left fa fa-arrow-right"></i></a>
         <hr>
-        <p>Hello, i just wanted to let you know that i'll be home at lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Best Regards, <br>Borge Refsnes</p>
+        <div id="MailBodyText">
+            <p>Hello, i just wanted to let you know that i'll be home at lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Best Regards, <br>Borge Refsnes</p>
+        </div>
+        <div id="MailSentimentText">
+        </div>
     </div>
 
     <div id="Jane" class="w3-container person">
@@ -198,7 +232,7 @@
       }
     }
 
-    openMail("Borge")
+    //openMail("Borge")
     function openMail(personName) {
       var i;
       var x = document.getElementsByClassName("person");
