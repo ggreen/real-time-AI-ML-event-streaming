@@ -37,7 +37,7 @@
                                         var letterResult = letterResults[x];
 
                                         if(i == 0)
-                                          drawMainLetter(letterResult);
+                                          drawMainLetter(x);
 
                                         var sentimentHtml = "";
 
@@ -46,7 +46,7 @@
                                         else
                                             sentimentHtml = "<button class='w3-button w3-block w3-red w3-section' title='Decline'>negative <i class='fa fa-remove'></i></button>";
 
-                                        var lrHtml = "<a href='javascript:void(0)' class='w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey' onclick='openMail('Borge');w3_close();' id='firstTab'>"+
+                                        var lrHtml = "<a href='javascript:void(0)' class='w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey' onclick='drawMainLetter("+x+");w3_close();' id='firstTab'>"+
                                                      "<div class='w3-container'>"+
                                                             "<img class='w3-round w3-margin-right' src='/images/"+letterResult.letter.author+".png' style='width:15%;'><span class='w3-opacity w3-large'>Borge Refsnes</span>"+
                                                             "<h6>Subject: "+letterResult.letter.subject+"</h6>"+
@@ -71,8 +71,10 @@
                         });
            });
 
-        function drawMainLetter(letterResult)
+        function drawMainLetter(pageLetterResultIndex)
         {
+            var letterResult =  pageLetterResults[pageLetterResultIndex];
+
             $("#MailFromText").html(letterResult.letter.author);
             $("#MailSubjectText").html(letterResult.letter.subject);
             $("#MailBodyText").html(letterResult.letter.body);
