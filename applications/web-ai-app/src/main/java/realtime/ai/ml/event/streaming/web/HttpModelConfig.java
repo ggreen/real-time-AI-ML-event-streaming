@@ -27,9 +27,9 @@ public class HttpModelConfig {
         return new Text2VectorsHttpService(new RestTemplate(),new URI(uri));
     }
 
-    @Bean
-    EmbeddingModel embeddingModel(Text2Vectors text2Vectors)
-    {
-        return new Text2VectorsModel(text2Vectors);
-    }
+//    @Bean
+//    EmbeddingModel embeddingModel(Text2Vectors text2Vectors)
+//    {
+//        return new Text2VectorsModel(text2Vectors);
+//    }
 }

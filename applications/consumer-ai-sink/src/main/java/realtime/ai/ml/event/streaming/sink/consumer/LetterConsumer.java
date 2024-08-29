@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import realtime.ai.ml.event.streaming.sink.repository.LetterRepository;
 import realtime.ai.ml.event.streaming.sink.repository.entity.LetterEntity;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 
 import java.util.Collections;
 import java.util.function.Consumer;
@@ -18,11 +19,11 @@ import static java.lang.String.valueOf;
 
 @Component
 @RequiredArgsConstructor
-public class LetterConsumer implements Consumer<Message<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment>> {
+public class LetterConsumer implements Consumer<Message<LetterSentiment>> {
 
     private final VectorStore vectorStore;
     private final LetterRepository letterRepository;
-    private final Converter<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment,Document> letterToDocument;
+    private final Converter<LetterSentiment,Document> letterToDocument;
 
     @Transactional
     public void accept(Message<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> letterMessage) {

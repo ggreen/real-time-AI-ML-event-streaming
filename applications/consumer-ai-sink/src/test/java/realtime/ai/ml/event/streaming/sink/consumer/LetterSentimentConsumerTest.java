@@ -12,7 +12,7 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 import realtime.ai.ml.event.streaming.sink.repository.LetterRepository;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -34,18 +34,18 @@ class LetterSentimentConsumerTest {
     private realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment letterSentiment;
 
     @Mock
-    private Converter<Letter, Document> converter;
+    private Converter<LetterSentiment, Document> converter;
 
     @Mock
     private Document document;
     @Mock
-    private Message<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> letterMsg;
+    private Message<LetterSentiment> letterMsg;
     @Mock
     private MessageHeaders headers;
 
     @BeforeEach
     void setUp() {
-        letterSentiment = JavaBeanGeneratorCreator.of(realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment.class).create();
+        letterSentiment = JavaBeanGeneratorCreator.of(LetterSentiment.class).create();
         subject = new LetterConsumer(vectorStore,letterRepository,converter);
     }
 
