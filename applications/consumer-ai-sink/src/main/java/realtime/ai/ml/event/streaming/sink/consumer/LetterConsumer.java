@@ -26,7 +26,7 @@ public class LetterConsumer implements Consumer<Message<LetterSentiment>> {
     private final Converter<LetterSentiment,Document> letterToDocument;
 
     @Transactional
-    public void accept(Message<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> letterMessage) {
+    public void accept(Message<LetterSentiment> letterMessage) {
 
         var letterSentiment = letterMessage.getPayload();
         var letter = letterSentiment.getLetter();
