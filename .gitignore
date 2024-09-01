@@ -1,5 +1,6 @@
 target/
 pom.xml.tag
+model.onnx
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
@@ -9,9 +10,12 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
-
+.onnx
 # Eclipse m2e generated files
 # Eclipse Core
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+runtime/
+onnx/
+/components/ai-ml-services/src/main/resources/onnx/distilbert-base-uncased/
