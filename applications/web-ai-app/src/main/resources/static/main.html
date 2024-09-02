@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/scripts/site.js"></script>
     <link rel="stylesheet" href="styles/site.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
@@ -35,13 +36,15 @@
                                     for (let x in letterResults) {
                                         var letterResult = letterResults[x];
 
+                                        var sentimentHtml = decorateSentiment(letterResult);
+
                                         var lrHtml = "<div class='w3-container w3-card w3-white w3-round w3-margin'><br>"+
                                                        "<img src='/images/"+letterResult.letter.author+".png' alt='Avatar' class='w3-left w3-circle w3-margin-right' style='width:60px'>"+
                                                         "<span class='w3-right w3-opacity'>"+letterResult.distance+" distance</span>"+
                                                         "<h4>"+letterResult.letter.author+"</h4><br>"+
                                                         "<hr class='w3-clear'/>"+
                                                         "<p>"+letterResult.letter.subject+"</p>"+
-                                                        "</div>"+
+                                                        "<p>"+sentimentHtml+"</p>"+
                                                     "</div>";
 
 
