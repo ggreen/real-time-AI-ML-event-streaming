@@ -7,8 +7,15 @@
 This project will explore how to get accurate real-time AI/ML results wherever and 
 whenever needed.  This project combines Spring microservices technologies with cloud-native data services like vector databases and event streaming brokers for real-time AI/ML use cases.
 
+The demo features sentiment analysis.
 
 ![docs/images/screenshot.png](docs/images/screenshot.png)
+
+
+
+In addition to Similarity Searches
+
+![docs/images/simarity-screen-shot.png](docs/images/simarity-screen-shot.png)
 
 Technologies
 

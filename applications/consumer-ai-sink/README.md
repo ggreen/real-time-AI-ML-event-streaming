@@ -3,6 +3,7 @@
 contentType:  application/json
 
 
+Example Messages
 
 ```json
 {
@@ -23,3 +24,21 @@ contentType:  application/json
 }
 ```
 
+
+```json
+{
+  "author" : "son",
+  "receiver" : "queen",
+  "subject" : "Can we have something other than meatloaf",
+  "body" : "Hi Mom<br/> I really appreciate all that you do, but I really really really, no longer like meatloaf."
+}
+```
+
+```json
+{
+  "author" : "daughter",
+  "receiver" : "queen",
+  "subject" : "I started a petition against meatloaf",
+  "body" : "Hi Mom<br/> We, the people, have decided that we will NO longer tolerate meatloaf."
+}
+```
