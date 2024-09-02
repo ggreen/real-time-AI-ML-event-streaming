@@ -8,6 +8,8 @@ This project will explore how to get accurate real-time AI/ML results wherever a
 whenever needed.  This project combines Spring microservices technologies with cloud-native data services like vector databases and event streaming brokers for real-time AI/ML use cases.
 
 
+![docs/images/screenshot.png](docs/images/screenshot.png)
+
 Technologies
 
 - [Spring AI](https://spring.io/projects/spring-ai)
