@@ -16,7 +16,7 @@
         var pageLetterResults = [];
 
         $(document).ready(function(){
-               var serviceUrl = "http://localhost:8080/letters/query/you/20";
+               var serviceUrl = "/letters/query/queen/20";
 
                $.ajax({url: serviceUrl,
                        type: "GET",
@@ -48,7 +48,7 @@
 
                                         var lrHtml = "<a href='javascript:void(0)' class='w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey' onclick='drawMainLetter("+x+");w3_close();' id='firstTab'>"+
                                                      "<div class='w3-container'>"+
-                                                            "<img class='w3-round w3-margin-right' src='/images/"+letterResult.letter.author+".png' style='width:15%;'><span class='w3-opacity w3-large'>Borge Refsnes</span>"+
+                                                            "<img class='w3-round w3-margin-right' src='/images/"+letterResult.letter.author+".png' style='width:15%;'><span class='w3-opacity w3-large'>"+letterResult.letter.author+"</span>"+
                                                             "<h6>Subject: "+letterResult.letter.subject+"</h6>"+
                                                         "</div>"+
                                                         "<div class='w3-half'>"+
@@ -74,11 +74,15 @@
         function drawMainLetter(pageLetterResultIndex)
         {
             var letterResult =  pageLetterResults[pageLetterResultIndex];
+            var dateTime = new Date(letterResult.letter.timeMs);
+            var dateText = dateTime.toDateString();
+
 
             $("#MailFromText").html(letterResult.letter.author);
             $("#MailSubjectText").html(letterResult.letter.subject);
             $("#MailBodyText").html(letterResult.letter.body);
-            $("#MailTimeText").html(new Date(letterResult.letter.timeMs).toString());
+            $("#MailTimeText").html(dateText);
+            $("#MailFromImage").attr("src","images/"+letterResult.letter.author+".png");
 
 //
             var sentimentHtml = "";
@@ -100,6 +104,7 @@
 <!-- Side Navigation -->
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;" id="mySidebar">
 <!--    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom w3-large"><img src="https://www.w3schools.com/images/w3schools.png" style="width:60%;"></a>-->
+    <img width="100%" src="images/queen.png">
     <a href="main.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
     <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"
        class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
@@ -167,7 +172,7 @@
 
     <div id="Borge" class="w3-container person">
         <br>
-        <img class="w3-round  w3-animate-top" src="/w3images/avatar3.png" style="width:20%;">
+        <img id="MailFromImage" class="w3-round  w3-animate-top" src="/w3images/avatar3.png" style="width:20%;">
         <h5  class="w3-opacity">Subject: <span id="MailSubjectText"></span></h5>
         <h4><i class="fa fa-clock-o"></i> From <span id="MailFromText">#nbsp;</span>, <span id="MailTimeText">#nbsp;</span>.</h4>
         <a class="w3-button w3-light-grey" href="#">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
@@ -226,11 +231,11 @@
       var x = document.getElementById(id);
       if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
-        x.previousElementSibling.className += " w3-red";
+        x.previousElementSibling.className += " w3-black";
       } else {
         x.className = x.className.replace(" w3-show", "");
         x.previousElementSibling.className =
-        x.previousElementSibling.className.replace(" w3-red", "");
+        x.previousElementSibling.className.replace(" w3-black", "");
       }
     }
 

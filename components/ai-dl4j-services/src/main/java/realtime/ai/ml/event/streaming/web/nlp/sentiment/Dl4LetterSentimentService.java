@@ -14,6 +14,7 @@ import org.nd4j.linalg.indexing.NDArrayIndex;
 import org.springframework.stereotype.Service;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
+import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class Dl4LetterSentimentService implements LetterSentimentService {
     }
 
     @Override
-    public realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment analyze(Letter letterSentiment) {
+    public LetterSentiment analyze(Letter letterSentiment) {
 
         INDArray networkOutput = toFeature(letterSentiment);
         long timeSeriesLength = networkOutput.size(2);
@@ -50,7 +51,7 @@ public class Dl4LetterSentimentService implements LetterSentimentService {
         double negativeProbability = probabilitiesAtLastWord.getDouble(1);
 
 
-        var builder = realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment.builder().letter(letterSentiment);
+        var builder = LetterSentiment.builder().letter(letterSentiment);
 
         if(positiveProbability > negativeProbability)
             builder.sentiment(SentimentType.POSITIVE);

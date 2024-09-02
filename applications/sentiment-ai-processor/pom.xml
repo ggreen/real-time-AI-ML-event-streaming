@@ -51,10 +51,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!--		<dependency>-->
-<!--			<groupId>org.springframework.ai</groupId>-->
-<!--			<artifactId>spring-ai-postgresml-spring-boot-starter</artifactId>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.ai</groupId>
+			<artifactId>spring-ai-postgresml-spring-boot-starter</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-rabbit-stream</artifactId>
@@ -111,11 +111,11 @@
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-transformers-spring-boot-starter</artifactId>
 		</dependency>
-<!--        <dependency>-->
-<!--            <groupId>realtime.ai.ml.event.streaming</groupId>-->
-<!--            <artifactId>ai-postgresml-services</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>realtime.ai.ml.event.streaming</groupId>
+            <artifactId>ai-postgresml-services</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 	<dependencyManagement>
 		<dependencies>
