@@ -2,8 +2,8 @@ package realtime.ai.ml.event.streaming.services.nlp.sentiment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.RestTemplate;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.domain.Letter;
+import realtime.ai.ml.event.streaming.domain.nlp.LetterSentiment;
 
 import java.net.URI;
 

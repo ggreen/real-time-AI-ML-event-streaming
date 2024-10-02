@@ -3,9 +3,9 @@ package realtime.ai.ml.event.streaming.services.postgres.ml.sentiment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
+import realtime.ai.ml.event.streaming.domain.Letter;
+import realtime.ai.ml.event.streaming.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentType;
 
 @RequiredArgsConstructor
 public class PgMlLetterSentimentService implements LetterSentimentService {

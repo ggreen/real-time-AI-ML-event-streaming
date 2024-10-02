@@ -11,8 +11,8 @@ import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.data.domain.Limit;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.LetterResults;
+import realtime.ai.ml.event.streaming.domain.Letter;
+import realtime.ai.ml.event.streaming.domain.LetterResults;
 import realtime.ai.ml.event.streaming.web.repository.entity.LetterPost;
 import realtime.ai.ml.event.streaming.web.repository.LetterRepository;
 

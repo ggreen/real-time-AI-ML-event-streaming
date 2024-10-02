@@ -13,9 +13,9 @@ import org.nd4j.linalg.indexing.INDArrayIndex;
 import org.nd4j.linalg.indexing.NDArrayIndex;
 import org.springframework.stereotype.Service;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
+import realtime.ai.ml.event.streaming.domain.Letter;
+import realtime.ai.ml.event.streaming.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentType;
 
 import java.util.ArrayList;
 import java.util.List;

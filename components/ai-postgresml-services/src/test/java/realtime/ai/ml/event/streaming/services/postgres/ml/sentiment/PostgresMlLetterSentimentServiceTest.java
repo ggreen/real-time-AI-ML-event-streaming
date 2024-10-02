@@ -8,8 +8,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
+import realtime.ai.ml.event.streaming.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.domain.Letter;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentType;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ class PostgresMlLetterSentimentServiceTest {
 
     @Test
     void analyze() {
-        var expected = realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment
+        var expected = LetterSentiment
                 .builder()
                 .letter(letterSentiment)
                 .sentiment(sentiment)
@@ -46,7 +47,7 @@ class PostgresMlLetterSentimentServiceTest {
                 .build();
 
 
-        List<realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment> list = asList(expected);
+        List<LetterSentiment> list = asList(expected);
 
         when(jdbcTemplate.query(anyString(),
                 any(RowMapper.class), any(Object[].class)))

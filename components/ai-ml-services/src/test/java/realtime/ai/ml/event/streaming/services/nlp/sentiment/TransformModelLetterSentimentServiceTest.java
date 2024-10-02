@@ -4,7 +4,7 @@ import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreato
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.transformers.TransformersEmbeddingModel;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.domain.nlp.LetterSentiment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -3,7 +3,7 @@ package realtime.ai.ml.event.streaming.services.conversions;
 import nyla.solutions.core.patterns.conversion.Converter;
 import nyla.solutions.core.util.Text;
 import org.springframework.ai.document.Document;
-import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
+import realtime.ai.ml.event.streaming.domain.nlp.LetterSentiment;
 
 import java.util.Map;
 

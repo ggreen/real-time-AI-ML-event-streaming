@@ -12,7 +12,7 @@ import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.indexing.INDArrayIndex;
 import org.nd4j.linalg.indexing.NDArrayIndex;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentData;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentData;
 
 import java.util.ArrayList;
 import java.util.Arrays;

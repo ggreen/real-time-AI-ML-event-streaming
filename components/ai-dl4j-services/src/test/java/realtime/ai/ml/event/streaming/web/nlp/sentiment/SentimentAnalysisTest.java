@@ -15,7 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.indexing.NDArrayIndex;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentData;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentData;
 
 import java.io.File;
 import java.io.IOException;

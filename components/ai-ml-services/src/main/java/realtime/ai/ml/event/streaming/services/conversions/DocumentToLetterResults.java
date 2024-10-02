@@ -5,9 +5,9 @@ import nyla.solutions.core.patterns.conversion.numbers.TextToDouble;
 import nyla.solutions.core.patterns.conversion.numbers.TextToLong;
 import nyla.solutions.core.util.Text;
 import org.springframework.ai.document.Document;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.LetterResults;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
+import realtime.ai.ml.event.streaming.domain.Letter;
+import realtime.ai.ml.event.streaming.domain.LetterResults;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentType;
 
 /**
  * Convert a document to a letter results

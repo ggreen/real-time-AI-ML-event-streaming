@@ -1,7 +1,7 @@
 package realtime.ai.ml.event.streaming.web.nlp.sentiment;
 
 import org.jetbrains.annotations.NotNull;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentData;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentData;
 
 import java.util.Iterator;
 

@@ -1,4 +1,4 @@
-package realtime.ai.ml.event.streaming.sink.repository;
+package realtime.ai.ml.event.streaming.sink.repository.jpa;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

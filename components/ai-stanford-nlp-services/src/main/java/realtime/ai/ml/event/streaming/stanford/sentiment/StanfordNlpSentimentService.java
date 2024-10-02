@@ -7,9 +7,10 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
+import realtime.ai.ml.event.streaming.domain.nlp.LetterSentiment;
 import realtime.ai.ml.event.streaming.services.nlp.sentiment.LetterSentimentService;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
+import realtime.ai.ml.event.streaming.domain.Letter;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentType;
 
 import java.util.Properties;
 
@@ -76,11 +77,11 @@ public class StanfordNlpSentimentService implements LetterSentimentService
         }
     }
 
-    public realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment analyze(Letter letterSentiment)
+    public LetterSentiment analyze(Letter letterSentiment)
     {
         var sentiment = this.analyzeSentiment(letterSentiment.getSubject());
         var polarity = toPolarity(sentiment);
-        return realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment.builder()
+        return LetterSentiment.builder()
                     .letter(letterSentiment)
                     .polarity(polarity)
                     .sentiment(sentiment)

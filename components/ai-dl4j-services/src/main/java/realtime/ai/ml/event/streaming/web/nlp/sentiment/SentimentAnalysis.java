@@ -21,7 +21,7 @@ import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.indexing.NDArrayIndex;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
-import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentData;
+import realtime.ai.ml.event.streaming.domain.nlp.SentimentData;
 
 import java.io.IOException;
 import java.util.List;

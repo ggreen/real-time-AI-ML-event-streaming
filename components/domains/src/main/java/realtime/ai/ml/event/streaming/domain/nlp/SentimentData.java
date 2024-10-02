@@ -1,4 +1,4 @@
-package realtime.ai.ml.event.streaming.web.domain.nlp;
+package realtime.ai.ml.event.streaming.domain.nlp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
