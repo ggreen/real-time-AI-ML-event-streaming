@@ -2,7 +2,10 @@ package realtime.ai.ml.event.streaming.services.nlp.sentiment;
 
 
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import nyla.solutions.core.io.IO;
+import org.springframework.ai.embedding.EmbeddingOptions;
+import org.springframework.ai.embedding.EmbeddingRequest;
 import org.springframework.ai.transformers.TransformersEmbeddingModel;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
@@ -10,6 +13,7 @@ import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public class TransformModelLetterSentimentService  implements LetterSentimentService{
     private final TransformersEmbeddingModel model;
     private final String tokenizerUri;
@@ -30,28 +34,16 @@ public class TransformModelLetterSentimentService  implements LetterSentimentSer
     @Override
     public LetterSentiment analyze(Letter letter) {
 
-        //distilbert/distilbert-base-uncased
-        TransformersEmbeddingModel embeddingModel = new TransformersEmbeddingModel();
 
-// (optional) defaults to classpath:/onnx/all-MiniLM-L6-v2/tokenizer.json
-        //embeddingModel.setTokenizerResource("classpath:/onnx/distilbert-base-uncased/tokenizer.json");
-        embeddingModel.setTokenizerResource("file:///Users/Projects/solutions/AI-ML/dev/real-time-AI-ML-event-streaming/applications/sentiment-ai-processor/src/main/resources/distilbert-base-uncased/tokenizer.json");
+//        List<List<Double>> embeddings = model.embed(List.of(letter.getSubject()));
 
-// (optional) defaults to classpath:/onnx/all-MiniLM-L6-v2/model.onnx
-        //embeddingModel.setModelResource("classpath:/onnx/distilbert-base-uncased/model.onnx");
-        embeddingModel.setModelResource("file:///Users/Projects/solutions/AI-ML/dev/real-time-AI-ML-event-streaming/applications/sentiment-ai-processor/src/main/resources/distilbert-base-uncased/model.onnx");
+        EmbeddingOptions options = EmbeddingOptions.EMPTY;
+        EmbeddingRequest request = new EmbeddingRequest(List.of(letter.getSubject()),options);
+        var response = model.call(request);
 
-    // (optional) defaults to ${java.io.tmpdir}/spring-ai-onnx-model
-    // Only the http/https resources are cached by default.
-//
-        embeddingModel.setResourceCacheDirectory(IO.tempDir()+"/text-classification");
+        log.info("response: {}",response);
 
-    // (optional) Set the tokenizer padding if you see an errors like:
-    // "ai.onnxruntime.OrtException: Supplied array is ragged, ..."
-    //  embeddingModel.setTokenizerOptions(Map.of("padding", "true"));
-
-        List<List<Double>> embeddings = embeddingModel.embed(List.of(letter.getSubject()));
-
+        //TODO: determine sentiment
         return LetterSentiment.builder().letter(letter).build();
     }
 }
