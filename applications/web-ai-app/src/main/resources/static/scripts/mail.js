@@ -1,3 +1,4 @@
+var firstTime = true;
 
 function drawStreamMail(message)
 {
@@ -18,8 +19,11 @@ function drawStreamMail(message)
 
         var letterResult = letterResults[x];
 
-        if(i == 0)
-          drawMainLetter(x);
+        if(firstTime && i == 0)
+        {
+            drawMainLetter(x);
+            firstTime = false;
+         }
 
         var sentimentHtml = "";
 
