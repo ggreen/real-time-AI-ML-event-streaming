@@ -8,20 +8,13 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Limit;
-import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Scheduler;
-import reactor.core.scheduler.Schedulers;
 import realtime.ai.ml.event.streaming.web.domain.LetterResults;
 import realtime.ai.ml.event.streaming.web.repository.LetterRepository;
 import realtime.ai.ml.event.streaming.web.repository.entity.LetterPost;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.xerial.snappy.buffer.DefaultBufferAllocator.factory;
 
 @RestController
 @RequestMapping("letters/query")

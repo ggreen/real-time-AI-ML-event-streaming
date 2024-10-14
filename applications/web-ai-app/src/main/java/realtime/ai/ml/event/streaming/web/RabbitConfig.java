@@ -8,12 +8,15 @@
 package realtime.ai.ml.event.streaming.web;
 
 import lombok.extern.slf4j.Slf4j;
+import nyla.solutions.core.patterns.integration.Publisher;
 import org.springframework.amqp.rabbit.connection.ConnectionNameStrategy;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import realtime.ai.ml.event.streaming.web.domain.Letter;
 
 @Configuration
 @Slf4j
@@ -32,6 +35,9 @@ public class RabbitConfig {
     @Value("${spring.rabbitmq.host:127.0.0.1}")
     private String hostname = "localhost";
 
+    @Value("${letter.exchange:letters}")
+    private String letterExchange;
+
     @Bean
     ConnectionNameStrategy connectionNameStrategy(){
         return (connectionFactory) -> applicationName;
@@ -41,6 +47,14 @@ public class RabbitConfig {
     public MessageConverter messageConverter()
     {
         return new Jackson2JsonMessageConverter();
+    }
+
+
+    @Bean
+    public Publisher<Letter> letterPublisher(RabbitTemplate rabbitTemplate)
+    {
+        rabbitTemplate.setExchange(letterExchange);
+        return letter -> rabbitTemplate.convertAndSend(letter);
     }
 
 }

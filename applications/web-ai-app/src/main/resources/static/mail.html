@@ -32,7 +32,7 @@
     <a href="main.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
     <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"
        class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align" onclick="document.getElementById('id01').style.display='block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align" onclick="document.getElementById('newLetterPanel').style.display='block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
     <a id="myBtn" onclick="myFunc('Demo1')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Inbox (3)<i class="fa fa-caret-down w3-margin-left"></i></a>
     <div id="Demo1" class="w3-hide w3-animate-left">
         <div id="ReceivedLettersPanel">
@@ -63,24 +63,24 @@
 </nav>
 
 <!-- Modal that pops up when you click on "New Message" -->
-<div id="id01" class="w3-modal" style="z-index:4">
+<div id="newLetterPanel" class="w3-modal" style="z-index:4">
     <div class="w3-modal-content w3-animate-zoom">
         <div class="w3-container w3-padding w3-red">
-       <span onclick="document.getElementById('id01').style.display='none'"
+       <span onclick="document.getElementById('newLetterPanel').style.display='none'"
              class="w3-button w3-red w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
             <h2>Send Mail</h2>
         </div>
         <div class="w3-panel">
             <label>To</label>
-            <input class="w3-input w3-border w3-margin-bottom" type="text">
+            <input id="mailToLabel" class="w3-input w3-border w3-margin-bottom" type="text">
             <label>From</label>
-            <input class="w3-input w3-border w3-margin-bottom" type="text">
+            <input id="mailFromLabel" class="w3-input w3-border w3-margin-bottom" type="text">
             <label>Subject</label>
-            <input class="w3-input w3-border w3-margin-bottom" type="text">
-            <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="What's on your mind?">
+            <input id="mailSubjectLabel" class="w3-input w3-border w3-margin-bottom" type="text">
+            <input  id="mailBodyLabel"  class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="What's on your mind?">
             <div class="w3-section">
-                <a class="w3-button w3-red" onclick="document.getElementById('id01').style.display='none'">Cancel &nbsp;<i class="fa fa-remove"></i></a>
-                <a class="w3-button w3-light-grey w3-right" onclick="document.getElementById('id01').style.display='none'">Send &nbsp;<i class="fa fa-paper-plane"></i></a>
+                <a class="w3-button w3-red" onclick="document.getElementById('newLetterPanel').style.display='none'">Cancel &nbsp;<i class="fa fa-remove"></i></a>
+                <a class="w3-button w3-light-grey w3-right" onclick="sendMail()">Send &nbsp;<i class="fa fa-paper-plane"></i></a>
             </div>
         </div>
     </div>
@@ -92,7 +92,7 @@
 <!-- Page content -->
 <div class="w3-main" style="margin-left:320px;">
     <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
-    <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-pencil"></i></a>
+    <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" onclick="document.getElementById('newLetterPanel').style.display='block'"><i class="fa fa-pencil"></i></a>
 
     <div id="Borge" class="w3-container person">
         <br>

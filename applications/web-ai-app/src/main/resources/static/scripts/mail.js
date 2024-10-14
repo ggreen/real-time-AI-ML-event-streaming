@@ -1,5 +1,38 @@
 var firstTime = true;
 
+
+function sendMail()
+{
+    document.getElementById('newLetterPanel').style.display='none';
+
+    var mailToLabel = $("#mailToLabel").val();
+    var mailFromLabel = $("#mailFromLabel").val();
+    var mailSubjectLabel = $("#mailSubjectLabel").val();
+    var mailBodyLabel = $("#mailBodyLabel").val();
+
+
+    var letter = JSON.stringify({
+                   "author" : mailFromLabel,
+                   "receiver" : mailToLabel,
+                   "subject" : mailSubjectLabel,
+                   "body" : mailBodyLabel
+                 });
+
+      $.ajax({
+        url:         "/letters/posts",
+        type:        "POST",
+        data:        letter,
+        contentType: "application/json; charset=utf-8",
+        dataType:    "json",
+        success:    function(results){
+              console.log("SUCCESS:"+results);
+        },
+        error: function(results){
+            console.log("WARN:"+results);
+          }
+      });
+}
+
 function drawStreamMail(message)
 {
        console.log("data: "+message.data);
@@ -48,8 +81,9 @@ function drawStreamMail(message)
         i++;
      }
 
-        $("#ReceivedLettersPanel").html(letterResultsHtml);
-                                                                 }
+     $("#ReceivedLettersPanel").html(letterResultsHtml);
+
+}
 
 function drawMainLetter(pageLetterResultIndex)
 {
@@ -72,6 +106,6 @@ function drawMainLetter(pageLetterResultIndex)
                 sentimentHtml = "<button class='w3-button w3-red w3-section' title='Decline'>negative <i class='fa fa-remove'></i></button>";
 
 
-            var sentimentBlock = sentimentHtml;
-            $("#MailSentimentText").html(sentimentBlock);
+    var sentimentBlock = sentimentHtml;
+    $("#MailSentimentText").html(sentimentBlock);
 }
