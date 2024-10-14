@@ -1,6 +1,7 @@
 package realtime.ai.ml.event.streaming.sink.consumer;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import nyla.solutions.core.patterns.conversion.Converter;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.VectorStore;
@@ -19,6 +20,7 @@ import static java.lang.String.valueOf;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class LetterConsumer implements Consumer<Message<LetterSentiment>> {
 
     private final VectorStore vectorStore;
@@ -41,6 +43,8 @@ public class LetterConsumer implements Consumer<Message<LetterSentiment>> {
                 .build();
 
         letterRepository.save(letterEntity);
+
+        log.info("SAVED {}",letterEntity);
 
     }
 

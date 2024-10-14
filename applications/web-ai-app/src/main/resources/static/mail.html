@@ -33,28 +33,28 @@
     <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"
        class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align" onclick="document.getElementById('newLetterPanel').style.display='block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
-    <a id="myBtn" onclick="myFunc('Demo1')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Inbox (3)<i class="fa fa-caret-down w3-margin-left"></i></a>
+    <a id="myBtn" onclick="myFunc('Demo1')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Inbox <i class="fa fa-caret-down w3-margin-left"></i></a>
     <div id="Demo1" class="w3-hide w3-animate-left">
         <div id="ReceivedLettersPanel">
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('Borge');w3_close();" id="firstTab">
                 <div class="w3-container">
-                    <img class="w3-round w3-margin-right" src="/w3images/avatar3.png" style="width:15%;"><span class="w3-opacity w3-large">Borge Refsnes</span>
-                    <h6>Subject: Remember Me</h6>
-                    <p>Hello, i just wanted to let you know that i'll be home at...</p>
+<!--                    <img class="w3-round w3-margin-right" src="/images/blank-person.png" style="width:15%;"><span class="w3-opacity w3-large">&nbsp;</span>-->
+                    <h6>&nbsp;</h6>
+                    <p>&nbsp;</p>
                 </div>
             </a>
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('Jane');w3_close();">
-                <div class="w3-container">
-                    <img class="w3-round w3-margin-right" src="/w3images/avatar5.png" style="width:15%;"><span class="w3-opacity w3-large">Jane Doe</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                </div>
-            </a>
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('John');w3_close();">
-                <div class="w3-container">
-                    <img class="w3-round w3-margin-right" src="/w3images/avatar2.png" style="width:15%;"><span class="w3-opacity w3-large">John Doe</span>
-                    <p>Welcome!</p>
-                </div>
-            </a>
+<!--            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('Jane');w3_close();">-->
+<!--                <div class="w3-container">-->
+<!--                    <img class="w3-round w3-margin-right" src="/w3images/avatar5.png" style="width:15%;"><span class="w3-opacity w3-large">Jane Doe</span>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('John');w3_close();">-->
+<!--                <div class="w3-container">-->
+<!--                    <img class="w3-round w3-margin-right" src="/w3images/avatar2.png" style="width:15%;"><span class="w3-opacity w3-large">John Doe</span>-->
+<!--                    <p>Welcome!</p>-->
+<!--                </div>-->
+<!--            </a>-->
         </div>
     </div>
     <a href="#" class="w3-bar-item w3-button"><i class="fa fa-paper-plane w3-margin-right"></i>Sent</a>
@@ -96,16 +96,13 @@
 
     <div id="Borge" class="w3-container person">
         <br>
-        <img id="MailFromImage" class="w3-round  w3-animate-top" src="/w3images/avatar3.png" style="width:20%;">
+        <img id="MailFromImage" class="w3-round  w3-animate-top" src="/images/blank-person.png" style="width:20%;">
         <h5  class="w3-opacity">Subject: <span id="MailSubjectText"></span></h5>
-        <h4><i class="fa fa-clock-o"></i> From <span id="MailFromText">#nbsp;</span>, <span id="MailTimeText">#nbsp;</span>.</h4>
+        <h4><i class="fa fa-clock-o"></i> From <span id="MailFromText">&nbsp;</span>, <span id="MailTimeText">&nbsp;</span>.</h4>
         <a class="w3-button w3-light-grey" href="#">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
         <a class="w3-button w3-light-grey" href="#">Forward<i class="w3-margin-left fa fa-arrow-right"></i></a>
         <hr>
         <div id="MailBodyText">
-            <p>Hello, i just wanted to let you know that i'll be home at lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p>Best Regards, <br>Borge Refsnes</p>
         </div>
         <div id="MailSentimentText">
         </div>
