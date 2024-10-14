@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    stream:
+      rabbit:
+        bindings:
+          letterConsumer-in-0:
+            consumer:
+#              queueNameGroupOnly: true
+              container-type: STREAM
+              dlqQuorum:
+                enabled: true

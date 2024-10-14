@@ -1,0 +1,19 @@
+
+spring:
+  cloud:
+    stream:
+      bindings:
+      rabbit:
+        bindings:
+          letterToSentiment-in-0:
+            consumer:
+              quorum:
+                enabled: true
+              dlqQuorum:
+                enabled: true
+          letterToSentiment-out-0:
+            producer:
+              quorum:
+                enabled: true
+              dlqQuorum:
+                enabled: true
