@@ -12,12 +12,6 @@ import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 @Configuration
 public class AiAppConfig {
 
-//    @Bean
-//    EmbeddingModel embeddingModel(Text2Vectors text2Vectors)
-//    {
-//        return new Post(text2Vectors);
-//    }
-
     @Bean
     Converter<LetterSentiment, Document> converter()
     {

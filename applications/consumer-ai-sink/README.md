@@ -1,4 +1,13 @@
+# Getting Started
 
+
+```shell
+java -jar applications/consumer-ai-sink/target/consumer-ai-sink-0.0.1-SNAPSHOT.jar
+```
+
+
+
+# Testing
 
 contentType:  application/json
 

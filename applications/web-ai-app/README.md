@@ -1,5 +1,13 @@
 
+# Getting Started
 
+
+```shell
+java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar
+```
+
+
+# Postgres ML Queries
 
 ```sql
 select * from vector_store

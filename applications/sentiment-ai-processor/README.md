@@ -9,4 +9,6 @@ SELECT pgml.version();
 Running Application
 
 
-java --spring.profiles.active="postgres.ml.sentiment,quorum" sentiment-ai-processor-0.0.1-SNAPSHOT.jar
+```shell
+java -jar applications/sentiment-ai-processor/target/sentiment-ai-processor-0.0.1-SNAPSHOT.jar  --spring.profiles.active="postgres.ml.sentiment,quorum"
+```
