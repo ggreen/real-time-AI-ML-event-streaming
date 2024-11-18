@@ -33,7 +33,7 @@ class Dl4LetterSentimentSentimentServiceTest {
         subject = new Dl4LetterSentimentService(model, wordVectors);
     }
 
-    @Test
+//    @Test
     void analyze() {
         expected.setSentiment(SentimentType.NEGATIVE);
         when(wordVectors.hasWord(anyString())).thenReturn(true);

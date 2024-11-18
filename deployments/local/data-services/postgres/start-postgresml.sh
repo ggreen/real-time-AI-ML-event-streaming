@@ -1,5 +1,7 @@
 docker run \
     -it \
+    --name postgresml \
+    --rm \
      -v postgres_data:/Users/Projects/solutions/AI-ML/dev/real-time-AI-ML-event-streaming/runtime/postgres_data \
     -p 5432:5432 \
     -p 8000:8000 \

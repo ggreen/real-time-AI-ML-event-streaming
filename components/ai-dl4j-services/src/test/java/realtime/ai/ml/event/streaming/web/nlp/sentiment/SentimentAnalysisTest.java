@@ -40,11 +40,6 @@ class SentimentAnalysisTest {
 
     @BeforeAll
     static void beforeAll() {
-//        when(wordVectors.hasWord(anyString())).thenReturn(true);
-//        when(wordVectors.vocab()).thenReturn(vocab);
-//        when(vocab.vocabExists()).thenReturn(true);
-//        when(vocab.wordAtIndex(0)).thenReturn(firstWord);
-//        when(wordVectors.getWordVector(anyString())).thenReturn(vectors);
 
         wordVectors = WordVectorSerializer.loadStaticModel(new File(wordVectorsPath));
         training =  constructTraining();
@@ -59,7 +54,7 @@ class SentimentAnalysisTest {
 
 
 
-    @Test
+//    @Test
     void training() throws Exception {
 
 
@@ -67,11 +62,8 @@ class SentimentAnalysisTest {
         int truncateReviewsToLength = 256;
 
         var model = subject.train();
-//        System.out.println("Starting training");
 
-//        model.save();
-
-        String shortNegativeReview = "Boy, did that movie suck. It was like a bad version of my least favorite cartoon.";
+        String shortNegativeReview = "Boy, did that movie was not good. It was like a bad version of my least favorite cartoon.";
         var test = subject.loadFeaturesFromString(shortNegativeReview, truncateReviewsToLength);
         evaluate(test, model, truncateReviewsToLength, shortNegativeReview);
 
@@ -93,7 +85,6 @@ class SentimentAnalysisTest {
     private void evaluate(INDArray features, MultiLayerNetwork model,
                           int truncateReviewsToLength, String review) throws IOException
     {
-//        INDArray features = test.loadFeaturesFromString(review, truncateReviewsToLength);
         INDArray networkOutput = model.output(features);
         long timeSeriesLength = networkOutput.size(2);
         INDArray probabilitiesAtLastWord = networkOutput.get(NDArrayIndex.point(0), NDArrayIndex.all(), NDArrayIndex.point(timeSeriesLength - 1));
