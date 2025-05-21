@@ -20,7 +20,7 @@ class EmbeddingControllerTest {
     private EmbeddingController subject;
     @Mock
     private EmbeddingModel model;
-    private List<Double> expected = asList(2.3,2.3);
+    private float[] expected = {2.3F,2.3F};
 
     @BeforeEach
     void setUp() {

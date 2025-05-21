@@ -1,0 +1,1 @@
+podman exec -it -u root valkey bash

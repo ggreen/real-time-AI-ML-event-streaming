@@ -16,10 +16,7 @@ public class Text2VectorsHttpService implements Text2Vectors{
     private final URI url;
 
     @Override
-    public List<Double> convert(String text) {
-        Double[] results = restTemplate.postForObject(url,text,Double[].class);
-
-
-        return Arrays.stream(results).collect(Collectors.toList());
+    public float[] convert(String text) {
+        return restTemplate.postForObject(url,text,float[].class);
     }
 }

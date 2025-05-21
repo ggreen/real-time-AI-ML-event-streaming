@@ -38,7 +38,7 @@ class Text2VectorsModelTest {
     @Test
     void toVector() {
 
-        List<Double> expected = Arrays.asList(0.34);
+        float[] expected = {0.34F};
 
         when(wordVectors.convert(any())).thenReturn(expected);
 
@@ -51,7 +51,7 @@ class Text2VectorsModelTest {
     @Test
     void call() {
 
-        List<Double> expected = Arrays.asList(0.34);
+        float[] expected = {0.34F};
         double[] vectors = {0.34};
 
         List<String> instructors = Arrays.asList("Testing");
@@ -64,6 +64,6 @@ class Text2VectorsModelTest {
         assertThat( actual).isNotNull();
         var results = actual.getResults();
 
-        assertThat(results.get(0).getOutput().get(0)).isEqualTo(expected.get(0));
+        assertThat(results.get(0).getOutput()[0]).isEqualTo(expected[0]);
     }
 }

@@ -42,7 +42,7 @@ class DocumentToLetterSentimentResultsTest {
                 "sentiment", expected.getSentiment().toString()
                 );
 
-        when(document.getContent()).thenReturn(expected.getLetter().getSubject());
+        when(document.getText()).thenReturn(expected.getLetter().getSubject());
         when(document.getMetadata()).thenReturn(metaData);
 
         var actual = subject.convert(document);
@@ -61,7 +61,7 @@ class DocumentToLetterSentimentResultsTest {
                 "polarity", expected.getPolarity()
         );
 
-        when(document.getContent()).thenReturn(expected.getLetter().getSubject());
+        when(document.getText()).thenReturn(expected.getLetter().getSubject());
         when(document.getMetadata()).thenReturn(metaData);
 
         var actual = subject.convert(document);
@@ -71,7 +71,7 @@ class DocumentToLetterSentimentResultsTest {
     @Test
     void convert_metaDataNull() {
 
-        when(document.getContent()).thenReturn(expected.getLetter().getSubject());
+        when(document.getText()).thenReturn(expected.getLetter().getSubject());
 
         assertDoesNotThrow( () ->  subject.convert(document));
 

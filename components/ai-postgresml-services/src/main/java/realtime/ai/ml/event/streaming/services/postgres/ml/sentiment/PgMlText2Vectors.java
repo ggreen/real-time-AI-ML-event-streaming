@@ -11,7 +11,7 @@ public class PgMlText2Vectors implements Text2Vectors {
     private final JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Double> convert(String sourceObject) {
-        return List.of();
+    public float[] convert(String sourceObject) {
+        return new float[0];
     }
 }

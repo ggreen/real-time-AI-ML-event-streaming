@@ -43,7 +43,7 @@ class LetterSentimentSentimentToDocumentTest {
         var actual = subject.convert(letterSentiment);
 
         assertEquals(expected.getMetadata(), actual.getMetadata());
-        assertEquals(expected.getContent(), actual.getContent());
+        assertEquals(expected.getText(), actual.getText());
 
     }
 }

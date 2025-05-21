@@ -15,13 +15,19 @@ import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
  *
  */
 public class DocumentToLetterResults implements Converter<Document, LetterResults> {
+
+    /**
+     * Convet the Spring AI document to the Letter results data structure
+     * @param document the Spring AI document
+     * @return the letter results with sentiment
+     */
     @Override
     public LetterResults convert(Document document) {
         var metaData = document.getMetadata();
 
         var letterBuilder = Letter.builder();
         var letterResultsBuilder = LetterResults.builder();
-        letterBuilder.subject(document.getContent());
+        letterBuilder.subject(document.getText());
         if(metaData != null && !metaData.isEmpty())
         {
             var distanceValue = metaData.get("distance");

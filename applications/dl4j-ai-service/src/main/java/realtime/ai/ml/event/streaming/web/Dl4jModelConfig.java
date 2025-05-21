@@ -17,6 +17,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * Configuration for the Deep Learning for Java API(s)
+ */
 @Configuration
 public class Dl4jModelConfig {
 
@@ -26,7 +29,7 @@ public class Dl4jModelConfig {
     private WordVectors wordVectors;
 
     @Bean
-    EmbeddingModel embeddingModel(Function<String, List<Double>> converter)
+    EmbeddingModel embeddingModel(Function<String, float[]> converter)
     {
         return new Text2VectorsModel(text -> converter.apply(text));
     }

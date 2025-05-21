@@ -41,9 +41,11 @@ public class LetterQueryController {
     @Cacheable("searchBySubject")
     public List<LetterResults> searchBySubject(@RequestParam String subjectText) {
 
-        var documents = vectorStore.similaritySearch(SearchRequest.query(subjectText)
-                .withSimilarityThreshold(threshold)
-                .withTopK(5));
+        var documents = vectorStore.similaritySearch(SearchRequest
+                .builder()
+                .query(subjectText)
+                .similarityThreshold(threshold).topK(5)
+                .build());
 
         return documents.stream().map((doc) -> toLetterResults.convert(doc)).collect(Collectors.toList());
     }

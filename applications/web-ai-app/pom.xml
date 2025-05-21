@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.2</version>
+		<version>3.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>realtime.ai.ml.event.streaming</groupId>
@@ -15,8 +15,8 @@
 	<description>web-ai-app</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-ai.version>1.0.0-M1</spring-ai.version>
-		<spring-cloud.version>2023.0.3</spring-cloud.version>
+		<spring-ai.version>1.0.0</spring-ai.version>
+		<spring-cloud.version>2024.0.1</spring-cloud.version>
 		<dl4j-root.version>1.0.0-M2.1</dl4j-root.version>
 		<dl4j-master.version>1.0.0-M2.1</dl4j-master.version>
 		<jcommon.version>1.0.23</jcommon.version>
@@ -27,7 +27,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-transformers-spring-boot-starter</artifactId>
+			<artifactId>spring-ai-advisors-vector-store</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -76,7 +76,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-pgvector-store-spring-boot-starter</artifactId>
+			<artifactId>spring-ai-starter-vector-store-pgvector</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.ai</groupId>

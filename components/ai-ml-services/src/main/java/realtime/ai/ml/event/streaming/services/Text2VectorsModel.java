@@ -8,7 +8,6 @@ import org.springframework.ai.embedding.Embedding;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.embedding.EmbeddingRequest;
 import org.springframework.ai.embedding.EmbeddingResponse;
-import org.springframework.stereotype.Component;
 import realtime.ai.ml.event.streaming.services.nlp.vectors.vectors.Text2Vectors;
 
 import java.util.ArrayList;
@@ -35,9 +34,8 @@ public class Text2VectorsModel implements EmbeddingModel {
     }
 
     @SneakyThrows
-    @Override
-    public List<Double> embed(Document document) {
-        var text = document.getContent();
+    public float[] embed(Document document) {
+        var text = document.getText();
 
         return this.text2Vectors.convert(text);
 

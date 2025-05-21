@@ -17,7 +17,7 @@ public class EmbeddingController {
     private final EmbeddingModel embeddingModel;
 
     @PostMapping
-    public List<Double> embed(@RequestBody  String text) {
+    public float[] embed(@RequestBody  String text) {
         return embeddingModel.embed(text);
     }
 }

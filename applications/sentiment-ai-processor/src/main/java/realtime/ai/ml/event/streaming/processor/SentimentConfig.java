@@ -9,6 +9,10 @@ import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 
 import java.util.function.Function;
 
+/**
+ * ML sentiment configurations
+ * @author gregory green
+ */
 @Configuration
 @Slf4j
 public class SentimentConfig {

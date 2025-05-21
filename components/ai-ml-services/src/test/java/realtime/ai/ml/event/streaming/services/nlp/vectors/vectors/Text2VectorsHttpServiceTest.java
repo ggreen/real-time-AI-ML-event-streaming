@@ -23,7 +23,7 @@ class Text2VectorsHttpServiceTest {
     @Mock
     private RestTemplate restTemplate;
     private String text = "Hello World";
-    private Double[] expected = {0.23,0.23};
+    private float[] expected = {0.23F,0.23F};
     private URI uri;
 
     @BeforeEach
