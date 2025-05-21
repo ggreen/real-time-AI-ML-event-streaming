@@ -27,3 +27,4 @@ Technologies
 # Publication
 
 - [AfroTech 2024](https://afrotechconference.com/)
+- [I & ML Fundamentals Using Spring and Cloud Native Data Services](https://www.youtube.com/watch?v=kfVO-4yYs5U)

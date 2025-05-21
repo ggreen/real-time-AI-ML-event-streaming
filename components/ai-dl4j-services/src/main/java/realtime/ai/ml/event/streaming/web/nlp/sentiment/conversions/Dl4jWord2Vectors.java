@@ -2,7 +2,6 @@ package realtime.ai.ml.event.streaming.web.nlp.sentiment.conversions;
 
 import nyla.solutions.core.util.collections.DimensionBuilder;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
-import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
