@@ -35,7 +35,7 @@ java -jar applications/consumer-ai-sink/target/consumer-ai-sink-0.0.1-SNAPSHOT.j
 Web UI
 
 ```shell
-java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar
+java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar --ai.vector.similarity.search.threshold=0.8
 ```
 --------------
 # Testing
