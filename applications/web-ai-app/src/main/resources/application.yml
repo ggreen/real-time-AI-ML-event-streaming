@@ -16,7 +16,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
 ai:
   model:
 #    uri: "http://localhost:8091/dl4jWord2Vectors"
