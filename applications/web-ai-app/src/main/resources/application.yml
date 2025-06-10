@@ -2,7 +2,7 @@ spring:
   application:
     name: "web-ai-app"
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/postgresml
     username: postgres
   ai:
     vectorstore:
@@ -10,8 +10,9 @@ spring:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
         dimensions: 384
+        initialize-schema: true
   jpa:
-    generate-ddl: false
+    generate-ddl: true
     hibernate:
       ddl-auto: update
     show-sql: true
