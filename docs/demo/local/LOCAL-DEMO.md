@@ -63,6 +63,11 @@ message=I really really do! There is no doubt in my heart. <br/> From the first 
 ```
 
 
+```properties
+subject=I want to get better at animation and I would like to have more patience.
+message=i would love to get better and make people laugh with my animation but the problem is that I do want to have to go to a hard college to do it because I really like graghic arts and designs
+```
+
 ## API to submit sentiment 
 
 
