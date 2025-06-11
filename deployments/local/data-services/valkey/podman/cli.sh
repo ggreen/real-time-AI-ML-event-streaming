@@ -1,1 +1,1 @@
-podman exec -it -u root valkey bash
+podman exec -it -u root valkey valkey-cli
