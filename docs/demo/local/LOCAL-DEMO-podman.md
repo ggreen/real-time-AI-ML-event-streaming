@@ -32,11 +32,26 @@ Consumer
 java -jar applications/consumer-ai-sink/target/consumer-ai-sink-0.0.1-SNAPSHOT.jar
 ```
 
-Web UI
+Queen UI
 
 ```shell
-java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar
+java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar --server.port=8080 --mail.user.id=queen
 ```
+
+```shell
+open http://localhost:8080
+```
+
+Josiah UI
+```shell
+java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar --server.port=8081 --mail.user.id=josiah
+```
+
+
+```shell
+open http://localhost:8081
+```
+
 --------------
 # Testing
 
@@ -48,18 +63,20 @@ open http://localhost:8080
 open http://localhost:8080/mail.html
 ```
 
-```properties
-to=queen
-from=josiah
-subject=But, I just cannot eat anymore meat loaf
-message=I mean really. I do not know what is it about meatloaf. <br/> When I think of loaf, I think it should be bread. <br/> But, meat, that it is just nasty
-```
 
 ```properties
 to=queen
 from=josiah
 subject=I love my beautiful wife
 message=I really really do! There is no doubt in my heart. <br/> From the first time I saw her, I knew.
+```
+
+
+```properties
+to=queen
+from=josiah
+subject=I love But, I just cannot eat anymore meat loaf
+message=I mean really. I do not know what is it about meatloaf. <br/> When I think of loaf, I think it should be bread. <br/> But, meat, that it is just nasty
 ```
 
 
@@ -122,12 +139,30 @@ curl -X 'POST' \
 }'
 ```
 
+```properties
+to=josiah
+from=queen
+subject=YOU ARE AMAZING
+message=AND love you
+```
+
 
 ####
 
-Cleanup
+Cleanup Postgres
 
 
 ```shell
-delete from letter_entity;
+delete from public.letter_entity;
+delete from public.vector_store;
+```
+
+
+Valkey
+```shell
+./deployments/local/data-services/valkey/podman/cli.sh
+```
+
+```shell
+FLUSHALL
 ```
