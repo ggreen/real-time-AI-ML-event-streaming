@@ -1,13 +1,13 @@
 package realtime.ai.ml.event.streaming.services.conversions;
 
 import nyla.solutions.core.patterns.conversion.Converter;
+import nyla.solutions.core.util.Organizer;
 import nyla.solutions.core.util.Text;
 import org.springframework.ai.document.Document;
 import realtime.ai.ml.event.streaming.web.domain.nlp.LetterSentiment;
 
 import java.util.Map;
 
-import static nyla.solutions.core.util.Organizer.toMap;
 
 /**
  * Letter To Document
@@ -23,7 +23,7 @@ public class LetterSentimentToDocument implements Converter<LetterSentiment, Doc
     @Override
     public Document convert(LetterSentiment letterSentiment) {
         var letter = letterSentiment.getLetter();
-        Map<String, Object> metadata = toMap(
+        Map<String, Object> metadata = Organizer.change().toMap(
                 "receiver", letter.getReceiver(),
                 "author", letter.getAuthor(),
                 "body", letter.getBody(),

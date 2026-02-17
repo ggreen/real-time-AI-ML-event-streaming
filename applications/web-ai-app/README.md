@@ -1,9 +1,26 @@
 
 # Getting Started
 
+Start Rabbit
+```sheel
+deployments/local/data-services/rabbit/podman/start-rabbitmq.sh
+```
+
+Start Valkey
 
 ```shell
-java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar
+deployments/local/data-services/valkey/podman/start.sh
+```
+
+Start Postgres
+
+```shell
+deployments/local/data-services/postgres/podman/pgvector.sh
+```
+
+Start Web application
+```shell
+java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar --spring.profiles.active=amqp1
 ```
 
 
