@@ -23,6 +23,9 @@ Technologies
 - [RabbitMQ](https://www.rabbitmq.com/)
 - [Postgres](https://www.postgresql.org/)
 
+Architecture
+
+![architecture.png](docs/images/architecture.png)
 
 # Publication
 

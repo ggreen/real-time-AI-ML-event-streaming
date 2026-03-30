@@ -35,7 +35,7 @@ java -jar applications/consumer-ai-sink/target/consumer-ai-sink-0.0.1-SNAPSHOT.j
 Queen UI
 
 ```shell
-java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar --server.port=8080 --mail.user.id=queen
+java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar --server.port=8080 --mail.user.id=queen --spring.profiles.active=amqp
 ```
 
 ```shell
@@ -44,7 +44,7 @@ open http://localhost:8080
 
 Josiah UI
 ```shell
-java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar --server.port=8081 --mail.user.id=josiah
+java -jar applications/web-ai-app/target/web-ai-app-0.0.1-SNAPSHOT.jar --server.port=8081 --mail.user.id=josiah --spring.profiles.active=amqp1
 ```
 
 

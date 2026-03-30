@@ -133,7 +133,7 @@ public class SentimentAnalysis {
         s2.setPositive(true);
         s2.setTokens(tokenizerFactory.create(s1.getText()).getTokens());
 
-        List<SentimentData> list = Organizer.toList(s1,s2);
+        List<SentimentData> list = Organizer.change().toList(s1,s2);
 
         return SentimentIteration.builder(list.iterator()).maxLength(100).size(2).build();
     }
@@ -154,7 +154,7 @@ public class SentimentAnalysis {
         s2.setPositive(true);
         s2.setTokens(tokenizerFactory.create(s1.getText()).getTokens());
 
-        List<SentimentData> list = Organizer.toList(s1,s2);
+        List<SentimentData> list = Organizer.change().toList(s1,s2);
 
         return SentimentIteration.builder(list.iterator()).maxLength(100).size(2).build();
     }

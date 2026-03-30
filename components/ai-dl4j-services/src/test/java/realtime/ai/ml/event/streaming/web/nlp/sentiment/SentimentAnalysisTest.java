@@ -19,6 +19,7 @@ import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentData;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -106,14 +107,14 @@ class SentimentAnalysisTest {
         List<SentimentData> sentiments = new ArrayList<>();
 
         int count =0;
-        for(var file : IO.listFileRecursive(dir,"*.txt"))
+        for(var file : IO.dir().listFileRecursive(dir,"*.txt"))
         {
             count ++;
             if(count > MAX_SIZE)
                 break;
 
             var sentimentData = new SentimentData();
-            sentimentData.setText(IO.readFile(file));
+            sentimentData.setText(IO.reader().readTextFile(file.toPath()));
             if(file.getAbsolutePath().contains("neg"))
                 sentimentData.setPositive(false);
             else
@@ -140,14 +141,14 @@ class SentimentAnalysisTest {
 
         int count =0;
 
-        for(var file : IO.listFileRecursive(dir,"*.txt"))
+        for(var file : IO.dir().listFileRecursive(dir,"*.txt"))
         {
             count ++;
             if(count > MAX_SIZE)
                 break;
 
             var sentimentData = new SentimentData();
-            sentimentData.setText(IO.readFile(file));
+            sentimentData.setText(IO.reader().readTextFile(file.toPath()));
             if(file.getAbsolutePath().contains("neg"))
                 sentimentData.setPositive(false);
             else
