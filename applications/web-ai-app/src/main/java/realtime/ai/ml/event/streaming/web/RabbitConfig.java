@@ -7,17 +7,19 @@
 
 package realtime.ai.ml.event.streaming.web;
 
+import com.rabbitmq.client.amqp.Environment;
+import com.rabbitmq.client.amqp.impl.AmqpEnvironmentBuilder;
 import lombok.extern.slf4j.Slf4j;
 import nyla.solutions.core.patterns.integration.Publisher;
-import org.springframework.amqp.rabbit.connection.ConnectionNameStrategy;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbitmq.client.AmqpConnectionFactory;
+import org.springframework.amqp.rabbitmq.client.RabbitAmqpAdmin;
 import org.springframework.amqp.rabbitmq.client.RabbitAmqpTemplate;
+import org.springframework.amqp.rabbitmq.client.SingleAmqpConnectionFactory;
 import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
-import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
 
 @Configuration
@@ -28,44 +30,48 @@ public class RabbitConfig {
     private String applicationName;
 
 
-    @Value("${spring.rabbitmq.username:guest}")
-    private String username;
-
-    @Value("${spring.rabbitmq.password:guest}")
-    private String password;
-
-    @Value("${spring.rabbitmq.host:127.0.0.1}")
-    private String hostname;
 
     @Value("${letter.exchange:letters}")
     private String letterExchange;
 
+
     @Bean
-    ConnectionNameStrategy connectionNameStrategy(){
-        return (connectionFactory) -> applicationName;
+    Environment amqpEnvironment() {
+        var env = new AmqpEnvironmentBuilder()
+                .connectionSettings()
+                .environmentBuilder()
+                .build();
+
+        env.connectionBuilder().name(applicationName);
+        return env;
     }
 
     @Bean
-    public MessageConverter messageConverter()
-    {
-        return new JacksonJsonMessageConverter();
+    RabbitAmqpAdmin admin(AmqpConnectionFactory connectionFactory) {
+        var admin = new RabbitAmqpAdmin(connectionFactory);
+        admin.declareExchange(new TopicExchange(letterExchange));
+        return admin;
     }
 
 
-    @Profile("amqp")
+
     @Bean
-    public Publisher<Letter> letterPublisher(RabbitTemplate rabbitTemplate)
-    {
-        rabbitTemplate.setExchange(letterExchange);
-        return rabbitTemplate::convertAndSend;
+    AmqpConnectionFactory connectionFactory(Environment environment) {
+        return new SingleAmqpConnectionFactory(environment);
     }
 
-    @Profile("amqp1")
     @Bean
-    public Publisher<Letter> letterAmpqPublisher(RabbitAmqpTemplate rabbitTemplate)
-    {
-        rabbitTemplate.setExchange(letterExchange);
-        return rabbitTemplate::convertAndSend;
+    RabbitAmqpTemplate rabbitAmqpTemplate(AmqpConnectionFactory connectionFactory) {
+        var template =  new RabbitAmqpTemplate(connectionFactory);
+        template.setMessageConverter(new JacksonJsonMessageConverter());
+        return template;
     }
 
+    @Bean
+    public Publisher<Letter> letterAmpqPublisher(RabbitAmqpTemplate rabbitTemplate) {
+        return letter -> {
+            rabbitTemplate.convertAndSend(letterExchange, letter.getReceiver(),
+                    letter);
+        };
+    }
 }

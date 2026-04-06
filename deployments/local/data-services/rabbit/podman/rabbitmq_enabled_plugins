@@ -1,1 +1,1 @@
-[rabbitmq_federation_management,rabbitmq_management,rabbitmq_mqtt,rabbitmq_stomp,rabbitmq_shovel_management,rabbitmq_shovel].
+[rabbitmq_federation_management,rabbitmq_management,rabbitmq_mqtt,rabbitmq_stomp,rabbitmq_shovel_management,rabbitmq_shovel,rabbitmq_stream,rabbitmq_jms_topic_exchange,rabbitmq_consistent_hash_exchange].

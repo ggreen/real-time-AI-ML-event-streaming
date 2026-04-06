@@ -34,6 +34,8 @@ spring:
             consumer:
 #              queueNameGroupOnly: true
 #              container-type: stream
+              bindingRoutingKey: "queen,josiah,daughter,son"
+              bindingRoutingKeyDelimiter: ","
               autoBindDlq: true
           letterToSentiment-out-0:
             consumer:
