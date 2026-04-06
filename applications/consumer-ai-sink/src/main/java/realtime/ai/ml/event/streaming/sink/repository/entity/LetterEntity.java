@@ -1,8 +1,6 @@
 package realtime.ai.ml.event.streaming.sink.repository.entity;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +18,10 @@ public class LetterEntity {
     private String Id;
 
     @Embedded
+    @AttributeOverride(
+            name = "body",
+            column = @Column(length = 2000)
+    )
     private Letter letterSentiment;
 
     private double polarity;

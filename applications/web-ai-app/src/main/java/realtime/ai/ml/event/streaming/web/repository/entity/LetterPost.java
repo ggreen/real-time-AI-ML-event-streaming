@@ -1,13 +1,10 @@
 package realtime.ai.ml.event.streaming.web.repository.entity;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Id;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
 import realtime.ai.ml.event.streaming.web.domain.nlp.SentimentType;
 
@@ -22,6 +19,10 @@ public class LetterPost {
     private String Id;
 
     @Embedded
+    @AttributeOverride(
+            name = "body",
+            column = @Column(length = 2000)
+    )
     private Letter letter;
 
     private double polarity;

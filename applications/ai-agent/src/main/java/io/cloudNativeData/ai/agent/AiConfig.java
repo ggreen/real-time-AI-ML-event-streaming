@@ -27,6 +27,8 @@ public class AiConfig {
 
     private final String prompt = """
             Response to the following message. Keep answer short and concise.
+            Use less than 1000 words.
+            
             FROM: <author>
             SUBJECT: <subject>
             
