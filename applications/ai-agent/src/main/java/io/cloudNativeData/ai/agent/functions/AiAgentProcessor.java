@@ -3,6 +3,7 @@ package io.cloudNativeData.ai.agent.functions;
 import io.cloudNativeData.ai.agent.service.AiAgentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
 

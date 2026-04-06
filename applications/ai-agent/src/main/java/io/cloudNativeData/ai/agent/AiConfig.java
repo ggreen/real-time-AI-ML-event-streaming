@@ -1,16 +1,18 @@
 package io.cloudNativeData.ai.agent;
 
-import io.cloudNativeData.ai.agent.service.AiAgentService;
-import lombok.extern.slf4j.Slf4j;
+import io.cloudNativeData.ai.agent.properties.AgentProperties;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.ChatOptions;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import realtime.ai.ml.event.streaming.web.domain.Letter;
 
+import java.util.function.Function;
+
 @Configuration
-@Slf4j
+@EnableConfigurationProperties(AgentProperties.class)
 public class AiConfig {
 
     /*
@@ -41,24 +43,18 @@ public class AiConfig {
                 .build();
 
     }
+
     @Bean
-    AiAgentService aiAgentService(ChatClient chatClient)
+    Function<Letter,String> letterInference(ChatClient chatClient)
     {
-
         return letter -> {
-            log.info("Received {}", letter);
-
                 var letterResponse = chatClient.prompt()
                         .user(u -> u.text(letter.getBody())
                                 .param("author", letter.getAuthor())
                                 .param("subject", letter.getSubject())
                         )
-                        .call()
-                        .entity(Letter.class);
-
-                log.info("****** Response: {}\n***************", letterResponse);
-
-                return letterResponse;
+                        .call();
+                return letterResponse.content();
         };
     }
 }
