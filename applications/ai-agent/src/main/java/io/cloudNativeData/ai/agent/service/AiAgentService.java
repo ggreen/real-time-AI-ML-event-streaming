@@ -4,7 +4,7 @@ import io.cloudNativeData.ai.agent.properties.AgentProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
+import io.cloudNativeData.ai.web.domain.Letter;
 
 import java.util.function.Function;
 

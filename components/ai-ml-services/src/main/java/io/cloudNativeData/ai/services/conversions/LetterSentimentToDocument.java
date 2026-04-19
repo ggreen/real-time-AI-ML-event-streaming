@@ -1,0 +1,37 @@
+package io.cloudNativeData.ai.services.conversions;
+
+import nyla.solutions.core.patterns.conversion.Converter;
+import nyla.solutions.core.util.Organizer;
+import nyla.solutions.core.util.Text;
+import org.springframework.ai.document.Document;
+import io.cloudNativeData.ai.web.domain.nlp.LetterSentiment;
+
+import java.util.Map;
+
+
+/**
+ * Letter To Document
+ * @author gregory green
+ */
+public class LetterSentimentToDocument implements Converter<LetterSentiment, Document> {
+
+    /**
+     *
+     * @param letterSentiment the object to convert
+     * @return the document
+     */
+    @Override
+    public Document convert(LetterSentiment letterSentiment) {
+        var letter = letterSentiment.getLetter();
+        Map<String, Object> metadata = Organizer.change().toMap(
+                "receiver", letter.getReceiver(),
+                "author", letter.getAuthor(),
+                "body", letter.getBody(),
+                "timeMs", letter.getTimeMs(),
+                "sentiment", Text.toString(letterSentiment.getSentiment()),
+                "polarity", letterSentiment.getPolarity()
+                );
+
+        return new Document(letter.getSubject(),metadata);
+    }
+}

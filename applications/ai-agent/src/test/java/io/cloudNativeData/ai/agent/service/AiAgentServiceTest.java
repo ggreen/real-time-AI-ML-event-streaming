@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
+import io.cloudNativeData.ai.web.domain.Letter;
 
 import java.util.function.Function;
 

@@ -1,0 +1,9 @@
+package io.cloudNativeData.realtime.ai.ml.event.streaming.sink.repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import io.cloudNativeData.realtime.ai.ml.event.streaming.sink.repository.entity.LetterEntity;
+
+@Repository
+public interface LetterRepository extends CrudRepository<LetterEntity,String> {
+}

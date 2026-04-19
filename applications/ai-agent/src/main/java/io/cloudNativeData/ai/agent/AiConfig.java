@@ -7,7 +7,7 @@ import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import realtime.ai.ml.event.streaming.web.domain.Letter;
+import io.cloudNativeData.ai.web.domain.Letter;
 
 import java.util.function.Function;
 
